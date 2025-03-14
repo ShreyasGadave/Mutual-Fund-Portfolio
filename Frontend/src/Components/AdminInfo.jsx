@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const AdminInfo = () => {
   const [AdminInfo, setAdminInfo] = useState({
-    Img: "",
+    // Img: null, // Store file object
     Name: "",
     Email: "",
     Phone: "",
@@ -12,14 +12,37 @@ const AdminInfo = () => {
 
   const [isEditing, setIsEditing] = useState(false); // State to track edit mode
 
-  const FormHandler = (e) => {
+  const FormHandler = async (e) => {
     e.preventDefault();
+  
     if (isEditing) {
-      console.log("Saved Data:", AdminInfo); // Save the data
+      const adminData = {
+        Name: AdminInfo.Name,
+        Email: AdminInfo.Email,
+        Phone: AdminInfo.Phone,
+        Address: AdminInfo.Address,
+        Bod: AdminInfo.Bod,
+      };
+  
+      try {
+        const response = await fetch("http://localhost:3009/admin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Ensure JSON is sent
+          },
+          body: JSON.stringify(adminData), // Send JSON data
+        });
+  
+        const result = await response.json();
+        console.log("Response from backend:", result);
+      } catch (error) {
+        console.error("Error sending data:", error);
+      }
     }
+  
     setIsEditing(!isEditing); // Toggle edit mode
   };
-
+  
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "Img") {
@@ -37,19 +60,23 @@ const AdminInfo = () => {
 
   return (
     <div className="mt-5 mx-4 md:mx-10 lg:mx-20 border rounded-lg p-5 bg-white shadow-sm">
-      <p className="text-xl md:text-2xl font-semibold mb-6">Personal Information</p>
+      <p className="text-xl md:text-2xl font-semibold mb-6">
+        Personal Information
+      </p>
       <form onSubmit={FormHandler} className="space-y-4">
         {/* Profile Image */}
-        <div>
-          <label className="block mb-1 text-sm md:text-base">Profile Image</label>
+        {/* <div>
+          <label className="block mb-1 text-sm md:text-base">
+            Profile Image
+          </label>
           <input
             type="file"
             name="Img"
             onChange={handleChange}
             className="border border-gray-400 rounded-sm p-2 w-full"
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
-        </div>
+        </div> */}
 
         {/* Name */}
         <div>
@@ -61,7 +88,7 @@ const AdminInfo = () => {
             value={AdminInfo.Name}
             placeholder="Name"
             onChange={handleChange}
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
         </div>
 
@@ -75,7 +102,7 @@ const AdminInfo = () => {
             value={AdminInfo.Email}
             placeholder="Email"
             onChange={handleChange}
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
         </div>
 
@@ -89,7 +116,7 @@ const AdminInfo = () => {
             value={AdminInfo.Phone}
             placeholder="Phone"
             onChange={handleChange}
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
         </div>
 
@@ -103,13 +130,15 @@ const AdminInfo = () => {
             value={AdminInfo.Address}
             placeholder="Address"
             onChange={handleChange}
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
         </div>
 
         {/* Date of Birth */}
         <div>
-          <label className="block mb-1 text-sm md:text-base">Date of Birth</label>
+          <label className="block mb-1 text-sm md:text-base">
+            Date of Birth
+          </label>
           <input
             className="border border-gray-400 rounded-sm p-2 w-full"
             type="date"
@@ -117,7 +146,7 @@ const AdminInfo = () => {
             value={AdminInfo.Bod}
             placeholder="Date of Birth"
             onChange={handleChange}
-            disabled={!isEditing} // Disable when not in edit mode
+            disabled={!isEditing}
           />
         </div>
 
@@ -125,10 +154,12 @@ const AdminInfo = () => {
         <button
           type="submit"
           className={`${
-            isEditing ? "bg-green-500 hover:bg-green-600" : "bg-blue-500 hover:bg-blue-600"
+            isEditing
+              ? "bg-green-500 hover:bg-green-600"
+              : "bg-blue-500 hover:bg-blue-600"
           } text-white px-4 py-2 rounded-sm w-full md:w-auto`}
         >
-          {isEditing ? "Save" : "Edit"} {/* Change button text based on mode */}
+          {isEditing ? "Save" : "Edit"}
         </button>
       </form>
     </div>
