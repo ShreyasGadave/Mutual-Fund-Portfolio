@@ -1,108 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Importing React and necessary hooks
 
 const AdminInfo = () => {
-  const [adminInfo, setAdminInfo] = useState({
-    Name: "",
-    Email: "",
-    Phone: "",
-    Address: "",
-    Bod: "",
-  });
-  const [isEditing, setIsEditing] = useState(false);
-  const [adminId, setAdminId] = useState(null); // Store Admin ID for updates
+  const [adminInfo, setAdminInfo] = useState({}); // State to store admin information
+  const [isEditing, setIsEditing] = useState(false); // State to track if editing mode is enabled
+  const [adminId, setAdminId] = useState(null); // State to store admin ID
 
-  // Fetch admin data from backend
   useEffect(() => {
-    const fetchAdminData = async () => {
-      try {
-        const response = await fetch("http://localhost:3009/admin");
-        const data = await response.json();
-        if (data.length > 0) {
-          setAdminInfo(data[0]); // Assuming there's only one admin
-          setAdminId(data[0]._id); // Store the admin's ID
+    fetch("http://localhost:3009/admin") // Fetch admin data from API
+      .then((res) => res.json()) // Convert response to JSON
+      .then((data) => {
+        if (data.length) { // If data exists
+          setAdminInfo(data[0]); // Set first admin data
+          setAdminId(data[0]._id); // Store admin ID
         }
-      } catch (error) {
-        console.error("Error fetching admin data:", error);
-      }
-    };
-    fetchAdminData();
+      })
+      .catch((err) => console.error("Error fetching data:", err)); // Handle errors
   }, []);
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const method = adminId ? "PUT" : "POST"; 
-      const url = adminId
-        ? `http://localhost:3009/admin/${adminId}`
-        : "http://localhost:3009/admin";
-
-      const response = await fetch(url, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(adminInfo),
-      });
-
-      const result = await response.json();
-      console.log("Response from backend:", result);
-
-      if (response.ok) {
-        alert("Admin data updated successfully!");
-        if (!adminId) {
-          setAdminId(result.adminData._id); // Save new ID if created
-        }
-      } else {
-        alert("Error updating data");
-      }
-    } catch (error) {
-      console.error("Error saving admin data:", error);
-    }
-
-    setIsEditing(false);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAdminInfo({ ...adminInfo, [name]: value });
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+    const method = adminId ? "PUT" : "POST"; // Determine request method
+    const url = adminId ? `http://localhost:3009/admin/${adminId}` : "http://localhost:3009/admin"; // API endpoint
+    
+    fetch(url, {
+      method, // Use determined method (PUT or POST)
+      headers: { "Content-Type": "application/json" }, // Set content type to JSON
+      body: JSON.stringify(adminInfo), // Convert adminInfo to JSON and send
+    })
+      .then((res) => res.json()) // Convert response to JSON
+      .then((data) => {
+        if (!adminId) setAdminId(data._id); // If new admin, store ID
+        setIsEditing(false); // Exit editing mode
+        alert("Data saved successfully!"); // Show success message
+      })
+      .catch((err) => console.error("Error saving data:", err)); // Handle errors
   };
 
   return (
-    <div className="mt-5 mx-4 md:mx-10 lg:mx-20 border rounded-lg p-5 bg-white shadow-sm">
-      <p className="text-xl md:text-2xl font-semibold mb-6">Personal Information</p>
-      <form onSubmit={handleFormSubmit} className="space-y-4">
-        {Object.keys(adminInfo).map((key) => (
-          <div key={key}>
-            <label className="block mb-1 text-sm md:text-base">{key}</label>
+    <div className="p-5 border rounded shadow bg-white"> {/* Container with styling */}
+      <h2 className="text-xl font-semibold mb-4">Admin Info</h2> {/* Title */}
+      <form onSubmit={handleSubmit} className="space-y-3"> {/* Form with spacing */}
+        {Object.entries(adminInfo).map(([key, value]) => ( /* Loop through admin info */
+          <div key={key}> {/* Field container */}
+            <label className="block text-sm font-medium">{key}</label> {/* Label */}
             <input
-              className="border border-gray-400 rounded-sm p-2 w-full"
-              type={key === "Bod" ? "date" : "text"}
-              name={key}
-              value={adminInfo[key]}
-              onChange={handleChange}
-              disabled={!isEditing}
+              type={key === "Bod" ? "date" : "text"} // Set input type
+              name={key} // Set input name
+              value={value || ""} // Set input value, default empty
+              onChange={(e) => setAdminInfo({ ...adminInfo, [key]: e.target.value })} // Update state on change
+              disabled={!isEditing} // Disable if not editing
+              className="w-full p-2 border rounded" // Styling for input
             />
           </div>
         ))}
-        <button
-          type="button"
-          onClick={() => setIsEditing(!isEditing)}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-sm w-full md:w-auto"
-        >
-          {isEditing ? "Cancel" : "Edit"}
+        <button type="button" onClick={() => setIsEditing(!isEditing)} className="bg-blue-500 text-white px-4 py-2 rounded"> {/* Toggle edit mode button */}
+          {isEditing ? "Cancel" : "Edit"} {/* Button text changes based on mode */}
         </button>
-        {isEditing && (
-          <button
-            type="submit"
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-sm w-full md:w-auto ml-2"
-          >
-            Save
-          </button>
-        )}
+        {isEditing && <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded ml-2">Save</button>} {/* Save button, only visible in edit mode */}
       </form>
     </div>
   );
 };
 
-export default AdminInfo;
+export default AdminInfo; // Export component
