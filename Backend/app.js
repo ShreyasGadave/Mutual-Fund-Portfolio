@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3009; // Set port from environment variable or 
 const MONGO_URI = process.env.MONGO_URI; // Get MongoDB connection URI from environment variables
 
 // Middleware configuration
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS for frontend
+app.use(cors({ origin: process.env.FRONTEND_URI, credentials: true })); // Enable CORS for frontend
 app.use(express.json()); // Middleware to parse incoming JSON requests
 
 ConnectDB(MONGO_URI);
