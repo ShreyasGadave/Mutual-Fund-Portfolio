@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div id='About'>
+    <div id='About'>wdwd
      </div>
   )
 }

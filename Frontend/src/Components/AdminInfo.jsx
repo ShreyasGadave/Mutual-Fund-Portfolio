@@ -1,120 +1,102 @@
-import React, { useState, useEffect } from "react"; // Import React and hooks
+import React, { useState, useEffect } from "react";
 
 const AdminInfo = () => {
-  const [adminInfo, setAdminInfo] = useState({}); // State to store admin information
-  const [isEditing, setIsEditing] = useState(false); // State to track edit mode
-  const [adminId, setAdminId] = useState(null); // State to store admin ID
+  const [adminInfo, setAdminInfo] = useState({
+    Name: "",
+    Address: "",
+    Bod: "",
+    Email: "",
+    Phone: ""
+  });
+  const [isEditing, setIsEditing] = useState(false);
+  const [adminId, setAdminId] = useState(null);
 
-  // Fetch admin data from API on component mount
   useEffect(() => {
-    fetch("http://localhost:3009/admin")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.length) {
-          setAdminInfo(data[0]); // Set first admin data
-          setAdminId(data[0]._id); // Store admin ID
+    const fetchAdminInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:3009/admin");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
-      })
-      .catch((err) => console.error("Error fetching data:", err));
+        const data = await response.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setAdminInfo(data[0]);
+          setAdminId(data[0]._id);
+        } else {
+          console.warn("No admin data found.");
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err.message);
+      }
+    };
+
+    fetchAdminInfo();
   }, []);
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const method = adminId ? "PUT" : "POST"; // Determine request method
+    const method = adminId ? "PUT" : "POST";
     const url = adminId
       ? `http://localhost:3009/admin/${adminId}`
-      : "http://localhost:3009/admin"; // API endpoint
+      : "http://localhost:3009/admin";
 
-    fetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(adminInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (!adminId) setAdminId(data._id); // Store new admin ID if created
-        setIsEditing(false); // Exit editing mode
-      })
-      .catch((err) => console.error("Error saving data:", err));
+    try {
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(adminInfo),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!adminId) setAdminId(data._id);
+      setIsEditing(false);
+    } catch (err) {
+      console.error("Error saving data:", err.message);
+    }
   };
 
   return (
-    <div className="p-5 border rounded shadow bg-white">
+    <div className="p-5 m-5 sm:m-2 shadow bg-white">
       <h2 className="text-xl font-semibold mb-4">Admin Info</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
-        {/* Name Field */}
-        <div>
-          <label className="block text-sm font-medium">Name</label>
-          <input
-            type="text"
-            name="Name"
-            value={adminInfo.Name || ""}
-            onChange={(e) => setAdminInfo({ ...adminInfo, Name: e.target.value })}
-            disabled={!isEditing}
-            className="w-full p-2 border rounded"
-          />
+        {[
+          { label: "Name", name: "Name", type: "text" },
+          { label: "Address", name: "Address", type: "text" },
+          { label: "Date of Birth", name: "Bod", type: "date" },
+          { label: "Email", name: "Email", type: "email" },
+          { label: "Phone", name: "Phone", type: "tel" }
+        ].map((field) => (
+          <div key={field.name} className="mt-3"> {/* Added margin-top for spacing */}
+          <hr className="mb-4"/> {/* Added bottom margin to separate input fields */}
+          <div className="flex flex-row items-center"> {/* Added items-center for vertical alignment */}
+            <div className="w-1/3">
+              <label className="block text-base font-medium md:text-base">{field.label}</label>
+            </div>
+            <div className="w-2/3 text-gray-600">
+              <input
+                type={field.type}
+                name={field.name}
+                value={adminInfo[field.name] || ""}
+                onChange={(e) => setAdminInfo({ ...adminInfo, [field.name]: e.target.value })}
+                disabled={!isEditing}
+                className="w-full p-2 bg-transparent"
+              />
+            </div>
+          </div>
         </div>
-
-        {/* Address Field */}
-        <div>
-          <label className="block text-sm font-medium">Address</label>
-          <input
-            type="text"
-            name="Address"
-            value={adminInfo.Address || ""}
-            onChange={(e) => setAdminInfo({ ...adminInfo, Address: e.target.value })}
-            disabled={!isEditing}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Birth Date Field */}
-        <div>
-          <label className="block text-sm font-medium">Date of Birth</label>
-          <input
-            type="date"
-            name="Bod"
-            value={adminInfo.Bod || ""}
-            onChange={(e) => setAdminInfo({ ...adminInfo, Bod: e.target.value })}
-            disabled={!isEditing}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Email Field */}
-        <div>
-          <label className="block text-sm font-medium">Email</label>
-          <input
-            type="email"
-            name="Email"
-            value={adminInfo.Email || ""}
-            onChange={(e) => setAdminInfo({ ...adminInfo, Email: e.target.value })}
-            disabled={!isEditing}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        {/* Phone Field */}
-        <div>
-          <label className="block text-sm font-medium">Phone</label>
-          <input
-            type="tel"
-            name="Phone"
-            value={adminInfo.Phone || ""}
-            onChange={(e) => setAdminInfo({ ...adminInfo, Phone: e.target.value })}
-            disabled={!isEditing}
-            className="w-full p-2 border rounded"
-          />
-        </div>
+        
+        ))}
 
         {/* Buttons */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-4">
           <button
             type="button"
             onClick={() => setIsEditing(!isEditing)}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="text-blue-500 border border-blue-500 font-light  px-4 py-1 rounded"
           >
             {isEditing ? "Cancel" : "Edit"}
           </button>
@@ -122,7 +104,7 @@ const AdminInfo = () => {
           {isEditing && (
             <button
               type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              className="text-green-500 border border-green-500 font-light  px-4 py-1 rounded"
             >
               Save
             </button>
