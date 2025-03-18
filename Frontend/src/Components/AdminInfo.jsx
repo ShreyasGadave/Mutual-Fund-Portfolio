@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FaEdit } from "react-icons/fa";
+import { BsSave2 } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const AdminInfo = () => {
   const [adminInfo, setAdminInfo] = useState({
@@ -6,7 +9,7 @@ const AdminInfo = () => {
     Address: "",
     Bod: "",
     Email: "",
-    Phone: ""
+    Phone: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [adminId, setAdminId] = useState(null);
@@ -22,17 +25,20 @@ const AdminInfo = () => {
         if (Array.isArray(data) && data.length > 0) {
           setAdminInfo(data[0]);
           setAdminId(data[0]._id);
+          toast.success("Admin data fetched successfully!"); // ✅ Success toast
         } else {
           console.warn("No admin data found.");
+          toast.warn("No admin data available."); // ⚠️ Warning toast
         }
       } catch (err) {
         console.error("Error fetching data:", err.message);
+        toast.error(`Error: ${err.message}`); // ❌ Error toast
       }
     };
-
+  
     fetchAdminInfo();
   }, []);
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = adminId ? "PUT" : "POST";
@@ -60,54 +66,70 @@ const AdminInfo = () => {
   };
 
   return (
-    <div className="p-5 m-5 sm:m-2 shadow bg-white">
-      <h2 className="text-xl font-semibold mb-4">Admin Info</h2>
+    <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
+      <h2 className="text-base/7 font-semibold text-gray-900">Profile</h2>
+      <p className="mt-1 text-sm/6 text-gray-600">
+        This information will be displayed publicly so be careful what you
+        share.
+      </p>
       <form onSubmit={handleSubmit} className="space-y-3">
         {[
           { label: "Name", name: "Name", type: "text" },
           { label: "Address", name: "Address", type: "text" },
           { label: "Date of Birth", name: "Bod", type: "date" },
           { label: "Email", name: "Email", type: "email" },
-          { label: "Phone", name: "Phone", type: "tel" }
+          { label: "Phone", name: "Phone", type: "tel" },
         ].map((field) => (
-          <div key={field.name} className="mt-3"> {/* Added margin-top for spacing */}
-          <hr className="mb-4"/> {/* Added bottom margin to separate input fields */}
-          <div className="flex flex-row items-center"> {/* Added items-center for vertical alignment */}
-            <div className="w-1/3">
-              <label className="block text-base font-medium md:text-base">{field.label}</label>
-            </div>
-            <div className="w-2/3 text-gray-600">
+          <div
+            key={field.name}
+            className="mt-3 px-4 py-1 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+          >
+            <hr className="col-span-3 mb-4 border-gray-300" />
+            <dt className="text-sm font-medium text-gray-900">
+              <label className="ml-2 block text-base font-medium md:text-base">
+                {field.label}
+              </label>
+            </dt>
+            <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">
               <input
                 type={field.type}
                 name={field.name}
                 value={adminInfo[field.name] || ""}
-                onChange={(e) => setAdminInfo({ ...adminInfo, [field.name]: e.target.value })}
+                onChange={(e) =>
+                  setAdminInfo({ ...adminInfo, [field.name]: e.target.value })
+                }
                 disabled={!isEditing}
                 className="w-full p-2 bg-transparent"
               />
-            </div>
+            </dd>
           </div>
-        </div>
-        
         ))}
+
+     
 
         {/* Buttons */}
         <div className="flex gap-2 mt-4">
+        <span className=" sm:block">
           <button
-            type="button"
-            onClick={() => setIsEditing(!isEditing)}
-            className="text-blue-500 border border-blue-500 font-light  px-4 py-1 rounded"
-          >
-            {isEditing ? "Cancel" : "Edit"}
+               type="button"
+               onClick={() => setIsEditing(!isEditing)}
+               className="inline-flex items-center rounded-md border border-blue-500 px-3 py-2 text-sm font-semibold text-black ">
+            <FaEdit
+              aria-hidden="true"
+              className="mr-1.5 -ml-0.5 size-5 text-blue-500"/>
+                 {isEditing ? "Cancel" : "Edit"}
           </button>
+        </span>
 
           {isEditing && (
-            <button
-              type="submit"
-              className="text-green-500 border border-green-500 font-light  px-4 py-1 rounded"
-            >
-              Save
-            </button>
+              <span className="sm:ml-3">
+              <button
+                type="submit"
+                className="inline-flex items-center rounded-md border border-green-500 px-3 py-2 text-sm font-semibold text-black ">
+                <BsSave2 aria-hidden="true" className="mr-1.5 -ml-0.5 size-5 text-green-500" />
+                Publish
+              </button>
+            </span>
           )}
         </div>
       </form>

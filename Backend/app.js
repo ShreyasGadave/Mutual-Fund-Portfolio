@@ -22,30 +22,15 @@ ConnectDB(MONGO_URI);
 // Define API routes for /admin
 app.route("/admin")
   // GET request to fetch all admins
-  app.get("/admin", async (req, res) => {
+  .get(async (req, res) => {
     try {
-      const admins = await AdminModel.find({}, "-__v");
-      res.json(admins);
+      const admins = await AdminModel.find({}, "-__v"); // Fetch all admins excluding __v field
+      res.json(admins); // Send the retrieved data as JSON response
     } catch (error) {
-      console.error("Error fetching admins:", error);
-      console.error("Error Message:", error.message);
-      console.error("Error Stack:", error.stack);
-      res.status(500).json({ message: "Internal Server Error", error: error.message });
+      res.status(500).json({ message: "Internal Server Error", error: error.message }); // Handle errors
     }
-  });
+  })
 
-  app.post("/admin", async (req, res) => {
-    try {
-      const newAdmin = new AdminModel(req.body);
-      await newAdmin.save();
-      res.status(201).json({ message: "Admin created!", adminData: newAdmin });
-    } catch (error) {
-      console.error("Error saving admin:", error);
-      console.error("Error Message:", error.message);
-      console.error("Error Stack:", error.stack);
-      res.status(500).json({ message: "Internal Server Error", error: error.message });
-    }
-  });
 
 // Define API routes for /admin/:id (specific admin)
 app.route("/admin/:id")
