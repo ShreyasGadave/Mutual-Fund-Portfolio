@@ -18,7 +18,7 @@ const Header = () => {
 
       {/* Left Content (Text & Buttons) */}
       <div className="md:w-1/2 text-center md:text-left flex flex-col justify-center">
-        <button className="bg-black text-white px-5 py-2 rounded-md text-sm font-medium">
+        <button className="bg-black text-white px-5 py-2 rounded-md text-sm font-medium w-fit">
           👋🏻 Hello All
         </button>
         <p className="text-black text-3xl md:text-5xl font-bold mt-4 leading-tight md:leading-snug">

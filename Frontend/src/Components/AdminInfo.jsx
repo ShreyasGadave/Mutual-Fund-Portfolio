@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { BsSave2 } from "react-icons/bs";
-import { toast } from "react-toastify";
+import { MdCancel } from "react-icons/md";
+// import { toast } from "react-toastify";
 
 const AdminInfo = () => {
   const [adminInfo, setAdminInfo] = useState({
@@ -25,20 +26,20 @@ const AdminInfo = () => {
         if (Array.isArray(data) && data.length > 0) {
           setAdminInfo(data[0]);
           setAdminId(data[0]._id);
-          toast.success("Admin data fetched successfully!"); // ✅ Success toast
+          // toast.success("Admin data fetched successfully!"); // ✅ Success toast
         } else {
           console.warn("No admin data found.");
-          toast.warn("No admin data available."); // ⚠️ Warning toast
+          // toast.warn("No admin data available."); // ⚠️ Warning toast
         }
       } catch (err) {
         console.error("Error fetching data:", err.message);
-        toast.error(`Error: ${err.message}`); // ❌ Error toast
+        // toast.error(`Error: ${err.message}`); // ❌ Error toast
       }
     };
-  
+
     fetchAdminInfo();
   }, []);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const method = adminId ? "PUT" : "POST";
@@ -46,7 +47,7 @@ const AdminInfo = () => {
       ? `http://localhost:3009/admin/${adminId}`
       : "http://localhost:3009/admin";
 
-    try {
+    try { 
       const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
@@ -82,7 +83,7 @@ const AdminInfo = () => {
         ].map((field) => (
           <div
             key={field.name}
-            className="mt-3 px-4 py-1 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+            className="mt-3  py-1 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
           >
             <hr className="col-span-3 mb-4 border-gray-300" />
             <dt className="text-sm font-medium text-gray-900">
@@ -114,19 +115,30 @@ const AdminInfo = () => {
                type="button"
                onClick={() => setIsEditing(!isEditing)}
                className="inline-flex items-center rounded-md border border-blue-500 px-3 py-2 text-sm font-semibold text-black ">
-            <FaEdit
-              aria-hidden="true"
-              className="mr-1.5 -ml-0.5 size-5 text-blue-500"/>
-                 {isEditing ? "Cancel" : "Edit"}
+
+         {isEditing ? (
+  <>
+    <MdCancel aria-hidden="true" className="mr-1.5 -ml-0.5 size-5 text-blue-500" /> Cancel
+  </>
+) : (
+  <>
+    <FaEdit aria-hidden="true" className="mr-1.5 -ml-0.5 size-5 text-blue-500" /> Edit
+  </>
+)}
+
           </button>
         </span>
 
           {isEditing && (
-              <span className="sm:ml-3">
+            <span className="sm:ml-3">
               <button
                 type="submit"
-                className="inline-flex items-center rounded-md border border-green-500 px-3 py-2 text-sm font-semibold text-black ">
-                <BsSave2 aria-hidden="true" className="mr-1.5 -ml-0.5 size-5 text-green-500" />
+                className="inline-flex items-center rounded-md border border-green-500 px-3 py-2 text-sm font-semibold text-black "
+              >
+                <BsSave2
+                  aria-hidden="true"
+                  className="mr-1.5 -ml-0.5 size-5 text-green-500"
+                />
                 Publish
               </button>
             </span>

@@ -1,62 +1,82 @@
-// Load environment variables from .env file
 require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const ConnectDB = require("./Config/ConnectDB");
+const AdminModel = require("./Models/AdminInfo");
+const ServiceModel = require("./Models/Service");
 
-// Import necessary modules
-const express = require("express"); // Express framework for creating server
-const cors = require("cors"); // Middleware to enable CORS (Cross-Origin Resource Sharing)
-const mongoose = require("mongoose"); // MongoDB object modeling tool
-const ConnectDB = require("./Config/ConnectDB"); // Import database connection function
-const AdminModel = require("./Models/AdminInfo"); // Import Mongoose model for Admin data
-
-// Create an Express application
 const app = express();
-const PORT = process.env.PORT || 3009; // Set port from environment variable or default to 3009
-const MONGO_URI = process.env.MONGO_URI; // Get MongoDB connection URI from environment variables
+const PORT = process.env.PORT || 3009;
+const MONGO_URI = process.env.MONGO_URI;
 
-// Middleware configuration
-app.use(cors({ origin: process.env.FRONTEND_URI, credentials: true })); // Enable CORS for frontend
-app.use(express.json()); // Middleware to parse incoming JSON requests
+app.use(cors({ origin: process.env.FRONTEND_URI || "*", credentials: true }));
+app.use(express.json());
 
 ConnectDB(MONGO_URI);
 
-// Define API routes for /admin
-app.route("/admin")
-  // GET request to fetch all admins
+// Admin Routes
+app
+  .route("/admin")
   .get(async (req, res) => {
     try {
-      const admins = await AdminModel.find({}, "-__v"); // Fetch all admins excluding __v field
-      res.json(admins); // Send the retrieved data as JSON response
+      const admins = await AdminModel.find({}, "-__v");
+      const services = await ServiceModel.find({}, "-__v");
+      res.json([...admins, ...services]); // Flatten for frontend
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error: error.message }); // Handle errors
+      res.status(500).json({ message: "Error fetching data", error: error.message });
     }
   })
-
-
-// Define API routes for /admin/:id (specific admin)
-app.route("/admin/:id")
-  // GET request to fetch a specific admin by ID
-  .get(async (req, res) => {
+  .post(async (req, res) => {
     try {
-      const admin = await AdminModel.findById(req.params.id).select("-__v"); // Find admin by ID, exclude __v field
-      if (!admin) return res.status(404).json({ message: "Admin not found" }); // Handle not found case
-      res.json(admin); // Send found admin data
+      const newAdmin = new AdminModel(req.body);
+      console.log(req.body);
+      
+      await newAdmin.save();
+      res.status(201).json({ message: "Admin created successfully!", adminData: newAdmin });
     } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error: error.message }); // Handle errors
-    }
-  })
-  // PUT request to update an existing admin by ID
-  .put(async (req, res) => {
-    try {
-      const updatedAdmin = await AdminModel.findByIdAndUpdate(req.params.id, req.body, {
-        new: true, // Return updated document
-        runValidators: true, // Ensure validation rules are applied
-      }).select("-__v");
-      if (!updatedAdmin) return res.status(404).json({ message: "Admin not found" }); // Handle not found case
-      res.json({ message: "Admin updated!", adminData: updatedAdmin }); // Send success response
-    } catch (error) {
-      res.status(500).json({ message: "Internal Server Error", error: error.message }); // Handle errors
+      res.status(500).json({ message: "Error creating admin", error: error.message });
     }
   });
 
-// Start the Express server on the specified port
+app
+  .route("/admin/:id")
+  .get(async (req, res) => {
+    try {
+      const admin = await AdminModel.findById(req.params.id).select("-__v");
+      if (!admin) return res.status(404).json({ message: "Admin not found" });
+      res.json(admin);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching admin", error: error.message });
+    }
+  })
+  .put(async (req, res) => {
+    try {
+      const updatedAdmin = await AdminModel.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      }).select("-__v");
+
+      if (!updatedAdmin) return res.status(404).json({ message: "Admin not found" });
+      res.json({ message: "Admin updated!", adminData: updatedAdmin });
+    } catch (error) {
+      res.status(500).json({ message: "Error updating admin", error: error.message });
+    }
+  })
+  .delete(async (req, res) => {
+    try {
+      const deletedAdmin = await AdminModel.findByIdAndDelete(req.params.id);
+      if (!deletedAdmin) return res.status(404).json({ message: "Admin not found" });
+      res.json({ message: "Admin deleted successfully!" });
+    } catch (error) {
+      res.status(500).json({ message: "Error deleting admin", error: error.message });
+    }
+  });
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({ message: err.message || "Something went wrong!" });
+});
+
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
