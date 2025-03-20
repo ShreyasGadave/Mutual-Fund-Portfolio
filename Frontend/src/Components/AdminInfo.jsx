@@ -107,6 +107,7 @@ const AdminInfo = () => {
         ))}
 
      
+<hr className="col-span-3 mt-2 border-gray-300" />
 
         {/* Buttons */}
         <div className="flex gap-2 mt-4">
@@ -114,7 +115,7 @@ const AdminInfo = () => {
           <button
                type="button"
                onClick={() => setIsEditing(!isEditing)}
-               className="inline-flex items-center rounded-md border border-blue-500 px-3 py-2 text-sm font-semibold text-black ">
+               className="inline-flex items-center rounded-md border border-blue-500 px-3 py-2 text-sm font-semibold text-blue-500 transition-transform duration-300 hover:scale-105">
 
          {isEditing ? (
   <>
@@ -133,7 +134,7 @@ const AdminInfo = () => {
             <span className="sm:ml-3">
               <button
                 type="submit"
-                className="inline-flex items-center rounded-md border border-green-500 px-3 py-2 text-sm font-semibold text-black "
+                className="inline-flex items-center text-green-500 rounded-md border border-green-500 px-3 py-2 text-sm font-semibold transition-transform duration-300 hover:scale-105 "
               >
                 <BsSave2
                   aria-hidden="true"
