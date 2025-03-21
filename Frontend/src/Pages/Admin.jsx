@@ -7,7 +7,6 @@ import AdminNavbar from '../Components/AdminNavbar'
 const Admin = () => {
   return (
     <div>
-      <Navbar/>
       <AdminNavbar/>
       <AdminInfo/>
     </div>

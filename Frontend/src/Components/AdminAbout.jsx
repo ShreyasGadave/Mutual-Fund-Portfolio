@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "./Navbar";
 import AdminNavbar from "./AdminNavbar";
 import { MdAddCard, MdDelete, MdPlaylistAdd } from "react-icons/md";
 import { RiResetLeftLine } from "react-icons/ri";
@@ -70,7 +69,6 @@ const AdminAbout = () => {
 
   return (
     <>
-      <Navbar />
       <AdminNavbar />
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">About</h2>
