@@ -1,26 +1,31 @@
 import { useState } from "react";
 import Navbar from "./Navbar";
 import AdminNavbar from "./AdminNavbar";
-import { MdAddCard, MdDelete } from "react-icons/md";
-import { MdPlaylistAdd } from "react-icons/md";
+import { MdAddCard } from "react-icons/md";
 import { RiResetLeftLine } from "react-icons/ri";
 
 const AdminTestimonials = () => {
   const [adminInfo, setAdminInfo] = useState({
-    Description: "",
-    Name: ""
+    Title: "",
+    Description: ""
   });
 
-  const [listItem, setListItem] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const resetForm = () => {
-    setAdminInfo({ Name: "", Description: "", List: [] });
-    setListItem("");
+    setAdminInfo({ Title: "", Description: "" });
   };
 
-  const ServiceHandler = async (e) => {
+  const TestimonialsHandler = async (e) => {
     e.preventDefault();
-    console.log(adminInfo);
+  
+    if (!adminInfo.Title || !adminInfo.Description) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
+
+    setLoading(true);
+    console.log("Sending Data:", adminInfo);
     
     try {
       const response = await fetch("http://localhost:3009/admin/testimonials", {
@@ -39,6 +44,8 @@ const AdminTestimonials = () => {
       resetForm();
     } catch (err) {
       console.error("Error submitting data:", err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,22 +60,23 @@ const AdminTestimonials = () => {
           This information will be displayed publicly, so be careful what you share.
         </p>
 
-        <form onSubmit={ServiceHandler} className="space-y-4">
+        <form onSubmit={TestimonialsHandler} className="space-y-4">
         <hr className="col-span-3 mt-2 border-gray-300" />
 
           {/* Name Input */}
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">Name</label>
+            <label className="block text-base font-medium text-gray-900">Title</label>
             <input
               type="text"
-              name="Name"
+              name="Title"
               value={adminInfo.Name}
-              onChange={(e) => setAdminInfo({ ...adminInfo, Name: e.target.value })}
-              placeholder="Enter list Name..."
-              className="w-full p-2  rounded-md  focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent"
+              onChange={(e) => setAdminInfo({ ...adminInfo, Title: e.target.value })}
+              placeholder="Enter your name..."
+              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent border"
             />
           </div>
           <hr className="col-span-3 mt-2 border-gray-300" />
+
           {/* Description Textarea */}
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-900">Description</label>
@@ -76,8 +84,8 @@ const AdminTestimonials = () => {
               name="Description"
               value={adminInfo.Description}
               onChange={(e) => setAdminInfo({ ...adminInfo, Description: e.target.value })}
-              placeholder="Enter list Description..."
-              className="w-full p-2  rounded-md  focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent"
+              placeholder="Enter your feedback..."
+              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent border"
               rows="4"
             />
           </div>
@@ -88,16 +96,21 @@ const AdminTestimonials = () => {
             <button
               type="submit"
               className="inline-flex items-center text-blue-500 border border-blue-500 px-4 py-2 text-sm font-semibold rounded-md transition-transform duration-300 hover:scale-105"
+              disabled={loading}
             >
-              <MdAddCard className="mr-2 text-blue-500 size-5" aria-hidden="true" />
-              Add
+              {loading ? "Adding..." : (
+                <>
+                  <MdAddCard className="mr-2 text-blue-500 size-5" aria-hidden="true" />
+                  Add
+                </>
+              )}
             </button>
             <button
               type="button"
               onClick={resetForm}
-              className="inline-flex items-center text-red-500  border border-red-500 px-4 py-2 text-sm font-semibold transition-transform duration-300 hover:scale-105 rounded-md"
+              className="inline-flex items-center text-red-500 border border-red-500 px-4 py-2 text-sm font-semibold transition-transform duration-300 hover:scale-105 rounded-md"
             > 
-           <RiResetLeftLine  className="mr-2 text-red-500 size-5" aria-hidden="true" />
+              <RiResetLeftLine className="mr-2 text-red-500 size-5" aria-hidden="true" />
               Reset
             </button>
           </div>

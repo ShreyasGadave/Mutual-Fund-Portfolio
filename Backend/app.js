@@ -16,7 +16,6 @@ app.use(express.json());
 
 ConnectDB(MONGO_URI);
 
-// Admin Routes
 app.use(AdminRouter);
 
 app.use(ServiceRouter);
