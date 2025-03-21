@@ -8,5 +8,5 @@ const AdminSchema = new mongoose.Schema({
   Bod: { type: String, required: true },
 });
 
-const AdminModel = mongoose.model("AdminInfo", AdminSchema);
+const AdminModel = mongoose.model("Profile", AdminSchema);
 module.exports = AdminModel;

@@ -23,7 +23,7 @@ const AdminTestimonials = () => {
     console.log(adminInfo);
     
     try {
-      const response = await fetch("http://localhost:3009/admin", {
+      const response = await fetch("http://localhost:3009/admin/testimonials", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

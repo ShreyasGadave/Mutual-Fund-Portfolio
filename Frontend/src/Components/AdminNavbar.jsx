@@ -12,11 +12,11 @@ const AdminNavbar = () => {
         About
       </div></NavLink>
      
-     <NavLink to='/admin/Service'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
+     <NavLink to='/admin/service'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
        Service
       </div></NavLink>
      
-     <NavLink to='/admin/Testimonials'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
+     <NavLink to='/admin/testimonials'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
       Testimonials
       </div></NavLink>
      

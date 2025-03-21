@@ -1,6 +1,6 @@
 const express = require("express");
 const AdminRouter = express.Router();
-const AdminModel = require("../Models/AdminInfo");
+const AdminModel = require("../Models/Profile");
 
 // Get all admins
 AdminRouter.get("/admin", async (req, res) => {
