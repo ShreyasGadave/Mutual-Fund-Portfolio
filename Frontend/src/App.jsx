@@ -6,6 +6,7 @@ import Admin from './Pages/Admin'
 import AdminServices from './Components/AdminServices'
 import AdminAbout from './Components/AdminAbout'
 import AdminTestimonials from './Components/AdminTestimonials'
+import Error from './Components/Error'
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
 <Route path='/admin/about' element={<AdminAbout/>}/>
 <Route path='/admin/service' element={<AdminServices/>}/>
 <Route path='/admin/testimonials' element={<AdminTestimonials/>}/>
+<Route path='*' element={ <Error/>}/>
+
     </Routes>
 
       </div>

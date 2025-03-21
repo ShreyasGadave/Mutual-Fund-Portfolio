@@ -7,34 +7,14 @@ import { RiResetLeftLine } from "react-icons/ri";
 
 const AdminTestimonials = () => {
   const [adminInfo, setAdminInfo] = useState({
-    Title: "",
     Description: "",
-    List: [],
+    Name: ""
   });
 
   const [listItem, setListItem] = useState("");
 
-  // Handle Adding New List Item
-  const addListItem = () => {
-    if (listItem.trim() !== "") {
-      setAdminInfo((prev) => ({
-        ...prev,
-        List: [...prev.List, listItem.trim()],
-      }));
-      setListItem(""); // Clear input after adding
-    }
-  };
-
-  // Handle Removing List Item
-  const removeListItem = (index) => {
-    setAdminInfo((prev) => ({
-      ...prev,
-      List: prev.List.filter((_, i) => i !== index),
-    }));
-  };
-
   const resetForm = () => {
-    setAdminInfo({ Title: "", Description: "", List: [] });
+    setAdminInfo({ Name: "", Description: "", List: [] });
     setListItem("");
   };
 
@@ -76,15 +56,15 @@ const AdminTestimonials = () => {
         <form onSubmit={ServiceHandler} className="space-y-4">
         <hr className="col-span-3 mt-2 border-gray-300" />
 
-          {/* Title Input */}
+          {/* Name Input */}
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">Title</label>
+            <label className="block text-base font-medium text-gray-900">Name</label>
             <input
               type="text"
-              name="Title"
-              value={adminInfo.Title}
-              onChange={(e) => setAdminInfo({ ...adminInfo, Title: e.target.value })}
-              placeholder="Enter list Title..."
+              name="Name"
+              value={adminInfo.Name}
+              onChange={(e) => setAdminInfo({ ...adminInfo, Name: e.target.value })}
+              placeholder="Enter list Name..."
               className="w-full p-2  rounded-md  focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent"
             />
           </div>
@@ -100,40 +80,6 @@ const AdminTestimonials = () => {
               className="w-full p-2  rounded-md  focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent"
               rows="4"
             />
-          </div>
-          <hr className="col-span-3 mt-2 border-gray-300" />
-
-          {/* Dynamic List Section */}
-          <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">List</label>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={listItem}
-                onChange={(e) => setListItem(e.target.value)}
-                className="w-full p-2  rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent"
-                placeholder="Enter list item..."
-              />
-              <button
-                type="button"
-                onClick={addListItem}
-                className="px-3 py-2 border border-blue-500   text-blue-500 font-semibold rounded-md transition-transform duration-300 hover:scale-105"
-              >
-                <MdPlaylistAdd className="size-5" />
-              </button>
-            </div>
-
-            {/* Display List Items */}
-            <ul className="mt-2 space-y-2">
-              {adminInfo.List.map((item, index) => (
-                <li key={index} className="flex  justify-between items-center p-2  rounded-md bg-gray-100">
-                  <span className="text-sm">{item}</span>
-                  <button onClick={() => removeListItem(index)} className="text-red-500 transition-transform duration-300 hover:scale-105">
-                    <MdDelete className="size-5 " />
-                  </button>
-                </li>
-              ))}
-            </ul>
           </div>
           <hr className="col-span-3 mt-2 border-gray-300" />
 
