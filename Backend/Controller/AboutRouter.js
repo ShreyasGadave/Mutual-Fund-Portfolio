@@ -3,7 +3,7 @@ const AboutRouter = express.Router();
 const AboutModel = require("../Models/About");
 
 // ✅ Get all about sections
-AboutRouter.get("/admin/about", async (req, res) => {
+AboutRouter.get("/about", async (req, res) => {
   try {
     const aboutSections = await AboutModel.find().select("-__v");
     res.status(200).json(aboutSections);
@@ -14,7 +14,7 @@ AboutRouter.get("/admin/about", async (req, res) => {
 });
 
 // ✅ Create a new about section
-AboutRouter.post("/admin/about", async (req, res) => {
+AboutRouter.post("/about", async (req, res) => {
   try {
     console.log("Received Data:", req.body); // Debugging
 

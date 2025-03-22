@@ -16,11 +16,11 @@ app.use(express.json());
 
 ConnectDB(MONGO_URI);
 
-app.use(AdminRouter);
+app.use("/admin",AdminRouter);
 
 app.use(ServiceRouter);
 
-app.use(AboutRouter);
+app.use("/admin",AboutRouter);
 
 app.use(TestimonialRouter);
 

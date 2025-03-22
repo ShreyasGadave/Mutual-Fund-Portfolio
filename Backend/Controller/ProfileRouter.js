@@ -3,7 +3,7 @@ const AdminRouter = express.Router();
 const AdminModel = require("../Models/Profile");
 
 // Get all admins
-AdminRouter.get("/admin", async (req, res) => {
+AdminRouter.get("/profile", async (req, res) => {
   try {
     const admins = await AdminModel.find().select("-__v");
     res.json(admins);
@@ -13,7 +13,7 @@ AdminRouter.get("/admin", async (req, res) => {
 });
 
 // Create a new admin
-AdminRouter.post("/admin", async (req, res) => {
+AdminRouter.post("/profile", async (req, res) => {
   try {
     const newAdmin = await AdminModel.create(req.body);
     res.status(201).json({ message: "Admin created successfully!", adminData: newAdmin });
@@ -23,7 +23,7 @@ AdminRouter.post("/admin", async (req, res) => {
 });
 
 // Get a single admin
-AdminRouter.get("/admin/:id", async (req, res) => {
+AdminRouter.get("/profile/:id", async (req, res) => {
   try {
     const admin = await AdminModel.findById(req.params.id).select("-__v");
     if (!admin) return res.status(404).json({ message: "Admin not found" });
@@ -34,7 +34,7 @@ AdminRouter.get("/admin/:id", async (req, res) => {
 });
 
 // Update an admin
-AdminRouter.put("/admin/:id", async (req, res) => {
+AdminRouter.put("/profile/:id", async (req, res) => {
   try {
     const updatedAdmin = await AdminModel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -49,7 +49,7 @@ AdminRouter.put("/admin/:id", async (req, res) => {
 });
 
 // Delete an admin
-AdminRouter.delete("/admin/:id", async (req, res) => {
+AdminRouter.delete("/profile/:id", async (req, res) => {
   try {
     const deletedAdmin = await AdminModel.findByIdAndDelete(req.params.id);
     if (!deletedAdmin) return res.status(404).json({ message: "Admin not found" });

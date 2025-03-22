@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminNavbar from "./AdminNavbar";
 import { MdAddCard, MdDelete, MdPlaylistAdd } from "react-icons/md";
 import { RiResetLeftLine } from "react-icons/ri";
@@ -11,6 +11,7 @@ const AdminAbout = () => {
   });
   const [listItem, setListItem] = useState("");
   const [loading, setLoading] = useState(false);
+  const [aboutData, setAboutData] = useState([]);
 
   // Handle Adding New List Item
   const addListItem = () => {
@@ -38,24 +39,29 @@ const AdminAbout = () => {
 
   const AboutHandler = async (e) => {
     e.preventDefault();
-  
-    if (!adminInfo.Title || !adminInfo.Description || adminInfo.List.length === 0) {
+
+    if (
+      !adminInfo.Title ||
+      !adminInfo.Description ||
+      adminInfo.List.length === 0
+    ) {
       alert("Please fill in all fields before submitting.");
       return;
     }
-  
+
     setLoading(true);
-    JSON.stringify(adminInfo, null, 2)
-  
+    JSON.stringify(adminInfo, null, 2);
+
     try {
       const response = await fetch("http://localhost:3009/admin/about", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adminInfo),
       });
-  
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-  
+
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+
       console.log("Response from server:", await response.json());
       resetForm();
     } catch (err) {
@@ -65,15 +71,32 @@ const AdminAbout = () => {
       setLoading(false);
     }
   };
-  
+
+  useEffect(() => {
+    const fetchAdminInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:3009/admin/about");
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setAboutData(Array.isArray(data) ? data : [data]);
+        console.log(data);
+      } catch (err) {
+        console.error("Error fetching data:", err.message);
+      }
+    };
+
+    fetchAdminInfo();
+  }, []);
 
   return (
-    <>
+    <div>
       <AdminNavbar />
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">About</h2>
         <form onSubmit={AboutHandler} className="space-y-4">
-        <hr className="col-span-3 mt-2 border-gray-300" />
+          <hr className="col-span-3 mt-2 border-gray-300" />
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-900">
               Title
@@ -170,7 +193,29 @@ const AdminAbout = () => {
           </div>
         </form>
       </div>
-    </>
+
+      <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
+        <h2 className="text-lg font-semibold text-gray-900">About Data</h2>
+        {aboutData.map((section) => (
+          <div
+            key={section._id}
+            className="border rounded border-gray-200 shadow p-4"
+          >
+            <p className="block text-base font-medium text-gray-900">
+              {section.Title}
+            </p>
+            <hr className="col-span-3 mt-3 border-gray-300" />
+            <p className="mt-2 block text-base font-normal text-gray-900">{section.Description}</p>
+            <hr className="col-span-3 mt-3 border-gray-300" />
+            <ul className="list-disc ml-5 mt-2">
+              {section.List.map((item, index) => (
+                <li key={index} >{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
