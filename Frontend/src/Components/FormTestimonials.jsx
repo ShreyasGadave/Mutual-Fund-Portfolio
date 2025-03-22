@@ -1,9 +1,8 @@
 import { useState } from "react";
-import AdminNavbar from "./AdminNavbar";
 import { MdAddCard } from "react-icons/md";
 import { RiResetLeftLine } from "react-icons/ri";
 
-const AdminTestimonials = () => {
+const  FormTestimonials = () => {
   const [adminInfo, setAdminInfo] = useState({
     Name: "",
     Description: "",
@@ -48,8 +47,6 @@ const AdminTestimonials = () => {
 
   return (
     <>
-      <AdminNavbar />
-
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">Testimonials</h2>
         <form onSubmit={TestimonialsHandler} className="space-y-4">
@@ -128,4 +125,4 @@ const AdminTestimonials = () => {
   );
 };
 
-export default AdminTestimonials;
+export default FormTestimonials

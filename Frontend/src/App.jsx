@@ -2,12 +2,11 @@ import React from 'react'
 import { Route, Routes} from 'react-router-dom'
 import Home from './Pages/Home'
 import Service from './Pages/Service'
-import Admin from './Pages/Admin'
-import AdminServices from './Components/AdminServices'
-import AdminAbout from './Components/AdminAbout'
-import AdminTestimonials from './Components/AdminTestimonials'
+import AdminServices from './Pages/AdminServices'
+import AdminAbout from './Pages/AdminAbout'
+import AdminTestimonials from './Pages/AdminTestimonials'
 import Error from './Components/Error'
-import AdminInfo from './Components/AdminInfo'
+import AdminInfo from './Pages/AdminProfile'
 
 const App = () => {
   return (

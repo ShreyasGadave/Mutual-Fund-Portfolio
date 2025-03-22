@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { BsSave2 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
-import AdminNavbar from "./AdminNavbar";
 
-const AdminInfo = () => {
-  const [adminInfo, setAdminInfo] = useState({
+const FormProfile = () => {
+  const [adminInfo, setFormProfile] = useState({
     Name: "",
     Address: "",
     Bod: "",
@@ -16,7 +15,7 @@ const AdminInfo = () => {
   const [adminId, setAdminId] = useState(null);
 
   useEffect(() => {
-    const fetchAdminInfo = async () => {
+    const fetchFormProfile = async () => {
       try {
         const response = await fetch("http://localhost:3009/admin/profile");
         if (!response.ok) {
@@ -24,7 +23,7 @@ const AdminInfo = () => {
         }
         const data = await response.json();
         if (Array.isArray(data) && data.length > 0) {
-          setAdminInfo(data[0]);
+          setFormProfile(data[0]);
           setAdminId(data[0]._id);
           // toast.success("Admin data fetched successfully!"); // ✅ Success toast
         } else {
@@ -37,7 +36,7 @@ const AdminInfo = () => {
       }
     };
 
-    fetchAdminInfo();
+    fetchFormProfile();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -68,7 +67,7 @@ const AdminInfo = () => {
 
   return (
     <>
-      <AdminNavbar />
+  
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -95,7 +94,7 @@ const AdminInfo = () => {
                   name={field.name}
                   value={adminInfo[field.name] || ""}
                   onChange={(e) =>
-                    setAdminInfo({ ...adminInfo, [field.name]: e.target.value })
+                    setFormProfile({ ...adminInfo, [field.name]: e.target.value })
                   }
                   disabled={!isEditing}
                   className="w-full p-2 bg-transparent"
@@ -127,7 +126,7 @@ const AdminInfo = () => {
                     <FaEdit
                       aria-hidden="true"
                       className="mr-1.5 -ml-0.5 size-5 text-blue-500"
-                    />{" "}
+                    />
                     Edit
                   </>
                 )}
@@ -155,4 +154,4 @@ const AdminInfo = () => {
   );
 };
 
-export default AdminInfo;
+export default FormProfile
