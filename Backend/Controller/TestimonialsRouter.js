@@ -3,7 +3,7 @@ const TestimonialRouter = express.Router();
 const TestimonialModel = require("../Models/Testimonials");
 
 // ✅ Get all testimonials
-TestimonialRouter.get("/admin/testimonials", async (req, res) => {
+TestimonialRouter.get("/testimonials", async (req, res) => {
   try {
     const testimonials = await TestimonialModel.find().select("-__v");
     res.json(testimonials);
@@ -16,10 +16,9 @@ TestimonialRouter.get("/admin/testimonials", async (req, res) => {
 });
 
 // ✅ Create a new testimonial (Only `Name` & `Description`)
-TestimonialRouter.post("/admin/testimonials", async (req, res) => {
+TestimonialRouter.post("/testimonials", async (req, res) => {
   try {
     const { Name, Description } = req.body;
-
     if (!Name || !Description) {
       return res
         .status(400)
@@ -29,7 +28,6 @@ TestimonialRouter.post("/admin/testimonials", async (req, res) => {
       Name,
       Description,
     });
-
     res.status(201).json({
       message: "Testimonial added successfully!",
       data: newTestimonial,
@@ -42,22 +40,22 @@ TestimonialRouter.post("/admin/testimonials", async (req, res) => {
   }
 });
 
-// ✅ Delete a testimonial by ID
-TestimonialRouter.delete("/admin/testimonials/:id", async (req, res) => {
-  try {
-    const deletedTestimonial = await TestimonialModel.findByIdAndDelete(
-      req.params.id
-    );
-    if (!deletedTestimonial)
-      return res.status(404).json({ message: "Testimonial not found" });
+// // ✅ Delete a testimonial by ID
+// TestimonialRouter.delete("/testimonials/:id", async (req, res) => {
+//   try {
+//     const deletedTestimonial = await TestimonialModel.findByIdAndDelete(
+//       req.params.id
+//     );
+//     if (!deletedTestimonial)
+//       return res.status(404).json({ message: "Testimonial not found" });
 
-    res.json({ message: "Testimonial deleted successfully!" });
-  } catch (error) {
-    console.error("Error deleting testimonial:", error);
-    res
-      .status(500)
-      .json({ message: "Error deleting testimonial", error: error.message });
-  }
-});
+//     res.json({ message: "Testimonial deleted successfully!" });
+//   } catch (error) {
+//     console.error("Error deleting testimonial:", error);
+//     res
+//       .status(500)
+//       .json({ message: "Error deleting testimonial", error: error.message });
+//   }
+// });
 
 module.exports = TestimonialRouter;

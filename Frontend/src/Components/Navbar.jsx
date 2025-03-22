@@ -19,7 +19,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-gray-100 shadow-md px-6 py-4 relative">
+    <nav className="bg-gray-100 shadow-md px-6 py-2 relative">
       <div className="flex justify-between items-center">
         {/* Logo */}
         <div className="w-32 h-auto">

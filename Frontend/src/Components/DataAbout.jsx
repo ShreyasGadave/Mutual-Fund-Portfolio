@@ -1,60 +1,53 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import {  MdDelete } from "react-icons/md";
+import React, { useState, useEffect } from "react";
 
-
-const DataAbout = () => {
-  const [aboutData, setAboutData] = useState([]);
+const DataTestimonials = () => {
+  const [testimonials, setTestimonials] = useState([]); // Ensures it's always an array
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAdminInfo = async () => {
+    const fetchTestimonials = async () => {
       try {
-        const response = await fetch("http://localhost:3009/admin/about");
+        const response = await fetch("http://localhost:3009/admin/testimonials");
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setAboutData(Array.isArray(data) ? data : [data]);
-        console.log(data);
+        console.log("Fetched Testimonials:", data);
+        setTestimonials(Array.isArray(data) ? data : [data]); // Ensure it's an array
       } catch (err) {
-        console.error("Error fetching data:", err.message);
+        console.error("Error fetching testimonials:", err.message);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchAdminInfo();
+    fetchTestimonials();
   }, []);
 
   return (
-    <div>
-      <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
-        <h2 className="text-lg font-semibold text-gray-900">About Data</h2>
-        {aboutData.map((section) => (
-          <div
-            key={section._id}
-            className="border mt-3 rounded border-gray-200 shadow p-4"
-          >
-            <div className="flex flex-row justify-between">
-              <div className="block text-base font-medium text-gray-900">
-                {section.Title}
-              </div>
-              <div></div>
-              <MdDelete className="mr-2 text-red-500 size-5" />
-            </div>
-            <hr className="col-span-3 mt-3 border-gray-300" />
-            <p className="mt-2 block text-sm font-normal text-gray-900">
-              {section.Description}
-            </p>
-            <hr className="col-span-3 mt-3 border-gray-300" />
-            <ul className="list-disc text-sm  ml-5 mt-2">
-              {section.List.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
+    <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
+      <h2 className="text-lg font-semibold text-gray-900">Testimonials</h2>
+
+      {/* Handle loading and error states */}
+      {loading ? (
+        <p className="text-gray-600">Loading testimonials...</p>
+      ) : error ? (
+        <p className="text-red-500">Error: {error}</p>
+      ) : testimonials?.length > 0 ? (
+        testimonials.map((testimonial, index) => (
+          <div key={testimonial._id || index} className="border mt-3 rounded border-gray-200 shadow p-4">
+            <p className="text-sm text-gray-900">{testimonial.Description || "No testimonial available"}</p>
+            <hr className="mt-3 border-gray-300" />
+            <div className="text-base font-medium text-gray-900">{testimonial.Name || "Anonymous"}</div>
           </div>
-        ))}
-      </div>
+        ))
+      ) : (
+        <p className="text-gray-600">No testimonials available.</p>
+      )}
     </div>
   );
 };
 
-export default DataAbout;
+export default DataTestimonials;

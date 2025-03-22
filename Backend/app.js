@@ -18,11 +18,11 @@ ConnectDB(MONGO_URI);
 
 app.use("/admin",AdminRouter);
 
-app.use(ServiceRouter);
+app.use("/admin",ServiceRouter);
 
 app.use("/admin",AboutRouter);
 
-app.use(TestimonialRouter);
+app.use("/admin",TestimonialRouter);
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)

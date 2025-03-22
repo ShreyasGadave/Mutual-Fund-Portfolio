@@ -4,7 +4,7 @@ const ServiceModel = require("../Models/Service");
 const  UploadCloudinary=require('../Models/CloudinaryStorage')
 
 // Get all admins
-ServiceRouter.get("/admin/service", async (req, res) => {
+ServiceRouter.get("/service", async (req, res) => {
   try {
     const admins = await ServiceModel.find().select("-__v");
     res.json(admins);
@@ -14,7 +14,7 @@ ServiceRouter.get("/admin/service", async (req, res) => {
 });
 
 // Create a new admin
-ServiceRouter.post("/admin/service",  UploadCloudinary.single("image"), async (req, res) => {
+ServiceRouter.post("/service",  UploadCloudinary.single("image"), async (req, res) => {
   try {
     console.log("Received Data:", req.body); // Log received data
 
