@@ -1,6 +1,7 @@
 const express = require("express");
 const ServiceRouter = express.Router();
 const ServiceModel = require("../Models/Service");
+const  UploadCloudinary=require('../Models/CloudinaryStorage')
 
 // Get all admins
 ServiceRouter.get("/admin/service", async (req, res) => {
@@ -13,20 +14,30 @@ ServiceRouter.get("/admin/service", async (req, res) => {
 });
 
 // Create a new admin
-ServiceRouter.post("/admin/service", async (req, res) => {
+ServiceRouter.post("/admin/service",  UploadCloudinary.single("image"), async (req, res) => {
   try {
     console.log("Received Data:", req.body); // Log received data
 
-    if (!req.body.Title || !req.body.Description || !Array.isArray(req.body.List)) {
-      return res.status(400).json({ message: "All fields are required and List must be an array" });
+    // Check if required fields exist
+    if (!req.body.Title || !req.body.Description || !req.file) {
+      return res.status(400).json({ message: "Title, Description, and Image are required!" });
     }
 
-    const newAdmin = await ServiceModel.create(req.body);
-    res.status(201).json({ message: "Admin created successfully!", adminData: newAdmin });
+    // Create a new service entry
+    const newService = new ServiceModel({
+      ImageURL: req.file.path, // Cloudinary image URL
+      Title: req.body.Title,
+      Description: req.body.Description,
+      List: req.body.List ? JSON.parse(req.body.List) : [], // Convert List string to array
+    });
 
+    await newService.save(); // Save to MongoDB
+    console.log("Service Created:", newService);
+
+    res.status(201).json({ message: "Service created successfully!", service: newService });
   } catch (error) {
-    console.error("Error creating admin:", error); // Log actual error details
-    res.status(500).json({ message: "Error creating admin", error: error.message });
+    console.error("Error creating service:", error);
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
 });
 

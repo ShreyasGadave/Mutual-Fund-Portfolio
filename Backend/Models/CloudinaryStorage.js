@@ -1,21 +1,22 @@
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const { v4: uuidv4 } = require("uuid");
-const CloudinaryAccount = require("../Config/Cloudinary");
+const cloudinary = require("../Config/Cloudinary"); // ✅ Use `cloudinary`, not `CredentialCloudinary`
 
+// ✅ Fix: Pass `cloudinary` directly
 const storage = new CloudinaryStorage({
-  cloudinary: CloudinaryAccount,
+  cloudinary: cloudinary, 
   params: async (req, file) => {
     const originalExtension = file.originalname.split(".").pop();
     return {
       folder: "uploads",
-      format: originalExtension,
+      format: originalExtension, 
       public_id: `${Date.now()}-${uuidv4()}`,
       resource_type: "image",
     };
   },
 });
 
-const Cloudinaryupload = multer({ storage });
+const UploadCloudinary = multer({ storage });
 
-module.exports = Cloudinaryupload;
+module.exports = UploadCloudinary;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { BsSave2 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
-// import { toast } from "react-toastify";
+import AdminNavbar from "./AdminNavbar";
 
 const AdminInfo = () => {
   const [adminInfo, setAdminInfo] = useState({
@@ -67,12 +67,10 @@ const AdminInfo = () => {
   };
 
   return (
+<>
+    <AdminNavbar />
     <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
      <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
-      <p className="mt-1 text-sm/6 text-gray-600">
-        This information will be displayed publicly so be careful what you
-        share.
-      </p>
       <form onSubmit={handleSubmit} className="space-y-3">
         {[
           { label: "Name", name: "Name", type: "text" },
@@ -147,6 +145,7 @@ const AdminInfo = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

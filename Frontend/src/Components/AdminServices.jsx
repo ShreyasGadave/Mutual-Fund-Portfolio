@@ -1,14 +1,18 @@
 import { useState } from "react";
+import axios from "axios";
 import AdminNavbar from "./AdminNavbar";
 import { MdAddCard, MdDelete, MdPlaylistAdd } from "react-icons/md";
+import { IoImageOutline } from "react-icons/io5";
 import { RiResetLeftLine } from "react-icons/ri";
 
 const AdminServices = () => {
   const [adminInfo, setAdminInfo] = useState({
+    Image: "",
     Title: "",
     Description: "",
     List: [],
   });
+  const [file, setFile] = useState(null)
   const [listItem, setListItem] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -38,54 +42,121 @@ const AdminServices = () => {
 
   const ServiceHandler = async (e) => {
     e.preventDefault();
-
-    // Form Validation
-    if (
-      !adminInfo.Title ||
-      !adminInfo.Description ||
-      adminInfo.List.length === 0
-    ) {
-      alert("Please fill in all fields before submitting.");
+  
+    if (!adminInfo.Title || !adminInfo.Description || adminInfo.List.length === 0 || !file) {
+      alert("Please fill in all fields and upload an image.");
       return;
     }
-
+  
     setLoading(true);
-    console.log("Sending Data:", adminInfo);
+  
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("Title", adminInfo.Title);
+    formData.append("Description", adminInfo.Description);
+    formData.append("List", JSON.stringify(adminInfo.List));
+  
+    // Debugging: Log the formData content
+    console.log("FormData before sending:");
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+  
     try {
-      const response = await fetch("http://localhost:3009/admin/service", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(adminInfo),
+      const res = await axios.post("http://localhost:3009/admin/service", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      console.log("Response from server:", await response.json());
+  
+      console.log("Response from server:", res.data);
       resetForm();
     } catch (err) {
-      console.error("Error submitting data:", err.message);
-      alert("Failed to submit data. Please try again.");
+      console.error("Error submitting data:", err);
+      if (err.response) {
+        console.log("Server Response Data:", err.response.data);
+      }
+      alert("Failed to submit data. Please check the backend logs.");
     } finally {
       setLoading(false);
     }
   };
+  
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+  
+    if (!selectedFile) return;
+  
+    // Validate file type
+    const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    if (!allowedTypes.includes(selectedFile.type)) {
+      alert("❌ Only image files (JPG, PNG, GIF) are allowed!");
+      return;
+    }
+  
+    // Update state with file & preview
+    setFile(selectedFile);
+    setAdminInfo((prev) => ({
+      ...prev,
+      Image: URL.createObjectURL(selectedFile),
+      ImageName: selectedFile.name,
+    }));
+  };
+  
 
   return (
     <>
       <AdminNavbar />
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">Service</h2>
-        <p className="mt-1 text-sm text-gray-600">
-          This information will be displayed publicly.
-        </p>
-       
-
         <form onSubmit={ServiceHandler} className="space-y-4">
-        <hr className="col-span-3 mt-2 border-gray-300" />
+          <hr className="col-span-3 mt-2 border-gray-300" />
+          <div>
+          <label className="block text-base font-medium text-gray-900">
+              Service Image
+            </label>
+            <div className="flex items-center gap-4 mt-2">
+  {/* File Upload Button */}
+  <label className="inline-flex items-center text-black border border-black px-4 py-2 text-sm font-semibold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
+    <span className="flex flex-row text-sm font-semibold justify-center">
+      <IoImageOutline className="mr-2 text-black size-5" /> Choose File
+    </span>
+    <input
+      type="file"
+      name="Image"
+      onChange={handleFileChange}
+      className="hidden"
+    />
+  </label>
+
+  {/* Show File Name & Image Preview */}
+  {adminInfo.Image && (
+    <div className="relative group w-40">
+      {/* File Name with Hover */}
+      <span
+        className="text-gray-700 cursor-pointer truncate block w-full"
+        title={adminInfo.ImageName} // Show full name on hover
+      >
+        {adminInfo.ImageName}
+      </span>
+
+      {/* Image Preview on Hover */}
+      <div className="absolute left-0 top-6 hidden group-hover:flex items-center justify-center bg-black bg-opacity-75 p-1 rounded-lg z-10">
+        <img
+          src={adminInfo.Image}
+          alt="Uploaded Preview"
+          className="w-32 h-32 object-cover rounded-md border border-gray-400"
+        />
+      </div>
+    </div>
+  )}
+</div>
+
+            <p className="mt-3 text-sm text-gray-600">
+              Note : Only image files (JPG, PNG, JPEG) will be accepted.
+            </p>
+          </div>
+          <hr className="bg-gray-500" />
+
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-900">
               Title

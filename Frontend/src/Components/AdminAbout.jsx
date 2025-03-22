@@ -72,11 +72,6 @@ const AdminAbout = () => {
       <AdminNavbar />
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">About</h2>
-        <p className="mt-1 text-sm text-gray-600">
-          This information will be displayed publicly.
-        </p>
-       
-
         <form onSubmit={AboutHandler} className="space-y-4">
         <hr className="col-span-3 mt-2 border-gray-300" />
           <div className="space-y-2">
