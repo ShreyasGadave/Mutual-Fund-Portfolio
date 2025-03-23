@@ -1,14 +1,14 @@
 import React from "react";
 import AdminNavbar from "../Components/AdminNavbar";
-import FormTestimonials from "../Components/FormTestimonials";
-import DataTestimonials from "../Components/DataTestimonials";
+import FormTestimonials from "../Components/Admin/FormTestimonials";
+import DataTestimonials from "../Components/Data/DataTestimonials";
 
 const AdminTestimonials = () => {
   return (
     <div>
       <AdminNavbar />
       <FormTestimonials />
-      <DataTestimonials/>
+      <DataTestimonials  title="Services Database" isAdmin={true} />
     </div>
   );
 };

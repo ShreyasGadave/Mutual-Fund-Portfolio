@@ -5,7 +5,7 @@ import Service from './Pages/Service'
 import AdminServices from './Pages/AdminServices'
 import AdminAbout from './Pages/AdminAbout'
 import AdminTestimonials from './Pages/AdminTestimonials'
-import Error from './Components/Error'
+import Error from './Components/Error/Error'
 import AdminInfo from './Pages/AdminProfile'
 
 const App = () => {

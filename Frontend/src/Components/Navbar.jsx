@@ -12,10 +12,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/#About" },
-    { name: "Service", path: "/#Service" },
-    { name: "Contact", path: "/#Contact" },
-    { name: "Admin", path: "/admin/profile" },
+    { name: "About", path: "#About" },
+    { name: "Service", path: "#Service" },
+    { name: "Contact", path: "#Contact" },
+    { name: "Admin", path: "admin/profile" },
   ];
 
   return (
@@ -30,17 +30,21 @@ const Navbar = () => {
           {isOpen ? <IoClose size={35} /> : <IoMenu size={35} />}
         </div>
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6">
-          {navLinks.map((link, index) => (
-            <NavLink
-              key={index}
-              to={link.path}
-              className="text-black font-light hover:text-blue-500"
-            >
-              {link.name}
-            </NavLink>
-          ))}
-        </ul>
+        <ul className="hidden md:flex items-center justify-center gap-6">
+  <a href="/" className="text-black font-light hover:text-blue-500">Home</a>
+  <a href="/#About" className="text-black font-light hover:text-blue-500">About</a>
+  <a href="/#Service" className="text-black font-light hover:text-blue-500">Service</a>
+  <a href="/#Contact" className="text-black font-light hover:text-blue-500">Contact</a>
+  <NavLink to='/admin/profile'>
+  <button
+    type="button"
+    className="text-black border border-gray-500 px-3 py-1 text-sm font-light transition-transform duration-300 hover:scale-105 rounded-md"
+  >
+    Admin
+  </button>
+  </NavLink>
+</ul>
+
       </div>
       {/* Overlay Background */}
       <div
@@ -56,16 +60,18 @@ const Navbar = () => {
         }`}
       >
         <ul className="flex flex-col gap-6 p-6">
-          {navLinks.map((link, index) => (
-            <NavLink
-              key={index}
-              to={link.path}
-              className="text-black font-light hover:text-blue-500"
-              onClick={toggleMenu}
-            >
-              {link.name}
-            </NavLink>
-          ))}
+        <a href="/#Home"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">Home</a>
+  <a href="/#About"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">About</a>
+  <a href="/#Service"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">Service</a>
+  <a href="/#Contact"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">Contact</a>
+  <NavLink to='/admin/profile'>
+  <button
+    type="button"  onClick={toggleMenu}
+    className="text-black border border-gray-500 px-3 py-1 text-sm font-light transition-transform duration-300 hover:scale-105 rounded-md"
+  >
+    Admin
+  </button>
+  </NavLink>
         </ul>
       </div>
     </nav>

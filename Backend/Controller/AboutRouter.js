@@ -54,16 +54,16 @@ AboutRouter.post("/about", async (req, res) => {
 //   }
 // });
 
-// // ✅ Delete an about section by ID
-// AboutRouter.delete("/admin/about/:id", async (req, res) => {
-//   try {
-//     const deletedAbout = await AboutModel.findByIdAndDelete(req.params.id);
-//     if (!deletedAbout) return res.status(404).json({ message: "About section not found" });
-//     res.json({ message: "About section deleted successfully!" });
-//   } catch (error) {
-//     console.error("Error deleting about section:", error);
-//     res.status(500).json({ message: "Error deleting about section", error: error.message });
-//   }
-// });
+// ✅ Delete an about section by ID
+AboutRouter.delete("/about/:id", async (req, res) => {
+  try {
+    const deletedAbout = await AboutModel.findByIdAndDelete(req.params.id);
+    if (!deletedAbout) return res.status(404).json({ message: "About section not found" });
+    res.json({ message: "About section deleted successfully!" });
+  } catch (error) {
+    console.error("Error deleting about section:", error);
+    res.status(500).json({ message: "Error deleting about section", error: error.message });
+  }
+});
 
 module.exports = AboutRouter;

@@ -40,22 +40,22 @@ TestimonialRouter.post("/testimonials", async (req, res) => {
   }
 });
 
-// // ✅ Delete a testimonial by ID
-// TestimonialRouter.delete("/testimonials/:id", async (req, res) => {
-//   try {
-//     const deletedTestimonial = await TestimonialModel.findByIdAndDelete(
-//       req.params.id
-//     );
-//     if (!deletedTestimonial)
-//       return res.status(404).json({ message: "Testimonial not found" });
+// ✅ Delete a testimonial by ID
+TestimonialRouter.delete("/testimonials/:id", async (req, res) => {
+  try {
+    const deletedTestimonial = await TestimonialModel.findByIdAndDelete(
+      req.params.id
+    );
+    if (!deletedTestimonial)
+      return res.status(404).json({ message: "Testimonial not found" });
 
-//     res.json({ message: "Testimonial deleted successfully!" });
-//   } catch (error) {
-//     console.error("Error deleting testimonial:", error);
-//     res
-//       .status(500)
-//       .json({ message: "Error deleting testimonial", error: error.message });
-//   }
-// });
+    res.json({ message: "Testimonial deleted successfully!" });
+  } catch (error) {
+    console.error("Error deleting testimonial:", error);
+    res
+      .status(500)
+      .json({ message: "Error deleting testimonial", error: error.message });
+  }
+});
 
 module.exports = TestimonialRouter;

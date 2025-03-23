@@ -41,28 +41,29 @@ ServiceRouter.post("/service",  UploadCloudinary.single("image"), async (req, re
   }
 });
 
+ServiceRouter.put("/service/:id", async (req, res) => {
+  try {
+    const updatedAdmin = await ServiceModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    }).select("-__v");
 
+    if (!updatedAdmin) return res.status(404).json({ message: "Admin not found" });
+    res.json({ message: "Admin updated!", adminData: updatedAdmin });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating admin", error: error.message });
+  }
+});
 
-// Get a single admin
-// ServiceRouter.get("/admin/:id", async (req, res) => {
-//   try {
-//     const admin = await ServiceModel.findById(req.params.id).select("-__v");
-//     if (!admin) return res.status(404).json({ message: "Admin not found" });
-//     res.json(admin);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error fetching admin", error: error.message });
-//   }
-// });
-
-// // Delete an admin
-// ServiceRouter.delete("/admin/:id", async (req, res) => {
-//   try {
-//     const deletedAdmin = await ServiceModel.findByIdAndDelete(req.params.id);
-//     if (!deletedAdmin) return res.status(404).json({ message: "Admin not found" });
-//     res.json({ message: "Admin deleted successfully!" });
-//   } catch (error) {
-//     res.status(500).json({ message: "Error deleting admin", error: error.message });
-//   }
-// });
+// Delete an admin
+ServiceRouter.delete("/service/:id", async (req, res) => {
+  try {
+    const deletedAdmin = await ServiceModel.findByIdAndDelete(req.params.id);
+    if (!deletedAdmin) return res.status(404).json({ message: "Admin not found" });
+    res.json({ message: "Admin deleted successfully!" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting admin", error: error.message });
+  }
+});
 
 module.exports = ServiceRouter;

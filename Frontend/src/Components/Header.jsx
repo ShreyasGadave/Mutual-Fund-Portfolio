@@ -3,7 +3,7 @@ import img from "../assets/img.png"; // Replace with your actual image path
 
 const Header = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-4 lg:mt-10">
+    <div id="Home" className="flex flex-col md:flex-row items-center justify-between px-6 md:px-10 py-4 lg:mt-10">
       
       {/* Right Image (Appears on Top in Mobile) */}
       <div className="w-full md:w-1/2 flex justify-center items-center mb-10 md:mb-0">

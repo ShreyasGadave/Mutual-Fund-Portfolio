@@ -1,14 +1,14 @@
 import React from "react";
 import AdminNavbar from "../Components/AdminNavbar";
-import FormAbout from "../Components/FormAbout";
-import DataAbout from "../Components/DataAbout";
+import FormAbout from "../Components/Admin/FormAbout";
+import DataAbout from "../Components/Data/DataAbout";
 
 const AdminAbout = () => {
   return (
     <div>
       <AdminNavbar />
       <FormAbout />
-      <DataAbout/>
+      <DataAbout title="About Database" isAdmin={true}/>
     </div>
   );
 };

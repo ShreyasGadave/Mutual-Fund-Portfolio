@@ -1,6 +1,6 @@
 import React from "react";
 import AdminNavbar from "../Components/AdminNavbar";
-import FormProfile from "../Components/FormProfile";
+import FormProfile from "../Components/Admin/FormProfile";
 
 const AdminProfile = () => {
   return (

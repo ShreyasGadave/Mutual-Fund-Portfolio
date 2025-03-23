@@ -2,11 +2,11 @@ import React from "react";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
 import Banner from "../Components/Banner";
-import Service from "../Components/Service";
 import Testimonials from "../Components/Testimonials";
 import Contact from "../Components/Contact";
 import About from "../Components/About";
 import Footer from "../Components/Footer";
+import DataService from "../Components/Data/DataService";
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
       <Navbar />
       <Header />
       <Banner />
-      <Service />
+      <DataService title="Our Services" isAdmin={false} />
       <Testimonials />
       <About />
       <Contact />
