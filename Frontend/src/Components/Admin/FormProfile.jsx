@@ -17,7 +17,9 @@ const FormProfile = () => {
   useEffect(() => {
     const fetchFormProfile = async () => {
       try {
-        const response = await fetch("http://localhost:3009/admin/profile");
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/admin/profile`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -43,8 +45,8 @@ const FormProfile = () => {
     e.preventDefault();
     const method = adminId ? "PUT" : "POST";
     const url = adminId
-      ? `http://localhost:3009/admin//profile/${adminId}`
-      : "http://localhost:3009/admin/profile";
+      ? `${import.meta.env.VITE_BACKEND_URL}/admin//profile/${adminId}`
+      : "${import.meta.env.VITE_BACKEND_URL}/admin/profile";
 
     try {
       const response = await fetch(url, {
@@ -67,7 +69,6 @@ const FormProfile = () => {
 
   return (
     <>
-  
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
         <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
@@ -94,7 +95,10 @@ const FormProfile = () => {
                   name={field.name}
                   value={adminInfo[field.name] || ""}
                   onChange={(e) =>
-                    setFormProfile({ ...adminInfo, [field.name]: e.target.value })
+                    setFormProfile({
+                      ...adminInfo,
+                      [field.name]: e.target.value,
+                    })
                   }
                   disabled={!isEditing}
                   className="w-full p-2 bg-transparent"
@@ -154,4 +158,4 @@ const FormProfile = () => {
   );
 };
 
-export default FormProfile
+export default FormProfile;

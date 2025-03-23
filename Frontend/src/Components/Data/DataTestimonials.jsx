@@ -8,7 +8,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
   const handleDelete = async (id) => {
     if (!isAdmin) return;
     try {
-      await fetch(`http://localhost:3009/admin/testimonials/${id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/testimonials/${id}`, {
         method: "DELETE",
       });
       setTestimonalData(testimonalData.filter((item) => item._id !== id));
@@ -21,7 +21,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
     const fetchAdminInfo = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3009/admin/testimonials "
+          `${import.meta.env.VITE_BACKEND_URL}/admin/testimonials `
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

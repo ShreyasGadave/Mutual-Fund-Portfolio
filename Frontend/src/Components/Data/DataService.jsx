@@ -11,7 +11,7 @@ const DataService = ({ title, isAdmin }) => {
   useEffect(() => {
     const fetchAdminInfo = async () => {
       try {
-        const response = await fetch("http://localhost:3009/admin/service");
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/service`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -29,7 +29,7 @@ const DataService = ({ title, isAdmin }) => {
   const handleDelete = async (id) => {
     if (!isAdmin) return;
     try {
-      await fetch(`http://localhost:3009/admin/service/${id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/service/${id}`, {
         method: "DELETE",
       });
       setServiceData(serviceData.filter((item) => item._id !== id));
@@ -48,7 +48,7 @@ const DataService = ({ title, isAdmin }) => {
   const handleSave = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3009/admin/service/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/admin/service/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

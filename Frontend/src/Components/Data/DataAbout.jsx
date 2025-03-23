@@ -8,7 +8,7 @@ const DataAbout = ({ title, isAdmin }) => {
   useEffect(() => {
     const fetchAdminInfo = async () => {
       try {
-        const response = await fetch("http://localhost:3009/admin/about");
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -25,7 +25,7 @@ const DataAbout = ({ title, isAdmin }) => {
   const handleDelete = async (id) => {
     if (!isAdmin) return;
     try {
-      await fetch(`http://localhost:3009/admin/about/${id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about/${id}`, {
         method: "DELETE",
       });
       setAboutData(aboutData.filter((item) => item._id !== id));

@@ -24,7 +24,7 @@ const  FormTestimonials = () => {
 
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:3009/admin/testimonials", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/testimonials`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

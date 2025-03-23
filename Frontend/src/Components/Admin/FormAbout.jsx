@@ -51,7 +51,7 @@ const FormAbout = () => {
     JSON.stringify(adminInfo, null, 2);
 
     try {
-      const response = await fetch("http://localhost:3009/admin/about", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(adminInfo),

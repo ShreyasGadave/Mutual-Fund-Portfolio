@@ -62,7 +62,7 @@ const FormService = () => {
     }
   
     try {
-      const res = await axios.post("http://localhost:3009/admin/service", formData, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/admin/service`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
