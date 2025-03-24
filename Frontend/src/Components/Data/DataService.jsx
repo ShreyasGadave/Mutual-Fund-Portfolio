@@ -77,14 +77,14 @@ const DataService = ({ title, isAdmin }) => {
 
   return (
     <div id="Service">
-      <div className="bg-gray-100 p-3 border m-3 border-gray-300 rounded sm:m-4 shadow-lg">
+      <div className=" p-3 m-3 rounded sm:m-4 ">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-5 sm:py-2 lg:max-w-none lg:py-4">
             <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
 
             <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {serviceData.map((item) => (
-                <div key={item._id} className="group relative p-4 rounded-lg ">
+                <div key={item._id} className="group border relative p-4 rounded-lg ">
                   <img
                     src={item.ImageURL}
                     className="w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square"
