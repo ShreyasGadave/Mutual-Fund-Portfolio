@@ -43,7 +43,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
     <div>
       <div className=" p-5 m-5 sm:m-2  bg-white">
         <h2 className="text-lg font-semibold text-gray-900">
-          Testimonials Database
+         {title}
         </h2>
         <div className="relative w-full ">
   {/* Scrollable Container */}
@@ -62,6 +62,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
       {/* Actions */}
       <div className="mt-4 flex justify-between items-center">
         <span className="block text-base font-medium text-gray-900">{item.Name}</span>
+        {isAdmin && (
         <button
           type="button"
           onClick={() => handleDelete(item._id)}
@@ -69,6 +70,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
         >
           <MdCancel className="size-5 " />
         </button>
+        )}
       </div>
     </div>
   ))}

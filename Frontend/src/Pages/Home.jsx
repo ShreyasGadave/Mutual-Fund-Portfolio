@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Components/Header";
 import Navbar from "../Components/Navbar";
 import Banner from "../Components/Banner";
-import Testimonials from "../Components/Testimonials";
+import DataTestimonials  from "../Components/Data/DataTestimonials";
 import Contact from "../Components/Contact";
 import About from "../Components/About";
 import Footer from "../Components/Footer";
@@ -15,7 +15,7 @@ const Home = () => {
       <Header />
       <Banner />
       <DataService title="Our Services" isAdmin={false} />
-      <Testimonials />
+      <DataTestimonials title="Testimonials" isAdmin={false}  />
       <About />
       <Contact />
       <Footer />

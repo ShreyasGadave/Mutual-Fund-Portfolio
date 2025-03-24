@@ -8,7 +8,7 @@ const AdminTestimonials = () => {
     <div>
       <AdminNavbar />
       <FormTestimonials />
-      <DataTestimonials  title="Services Database" isAdmin={true} />
+      <DataTestimonials  title="Testimonials Database" isAdmin={true}  />
     </div>
   );
 };
