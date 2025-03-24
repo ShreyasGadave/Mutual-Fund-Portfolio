@@ -8,9 +8,12 @@ const DataTestimonials = ({ title, isAdmin }) => {
   const handleDelete = async (id) => {
     if (!isAdmin) return;
     try {
-      await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/testimonials/${id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/admin/testimonials/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setTestimonalData(testimonalData.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting:", error);
@@ -21,7 +24,8 @@ const DataTestimonials = ({ title, isAdmin }) => {
     const fetchAdminInfo = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/admin/testimonials `
+          `${import.meta.env.VITE_BACKEND_URL}/admin/testimonials `,
+          { mode: "cors" }
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -37,34 +41,41 @@ const DataTestimonials = ({ title, isAdmin }) => {
   }, []);
   return (
     <div>
-      <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
+      <div className=" p-5 m-5 sm:m-2  bg-white">
         <h2 className="text-lg font-semibold text-gray-900">
-        {title}
+          Testimonials Database
         </h2>
-        {testimonalData.map((item) => (
-          <div
-            key={item._id}
-            className="border mt-3 rounded border-gray-200 shadow p-4"
-          >
-            <div className="flex flex-row justify-between">
-              <div className="block text-base font-medium text-gray-900">
-                {item.Name}
-              </div>
-              <div></div>
-              <button
-                type="button"
-                onClick={() => handleDelete(item._id)}
-                className="inline-flex items-center text-red-500 rounded-md border border-red-500 px-2 py-1 text-sm font-semibold transition-transform duration-300 hover:scale-105"
-              >
-                <MdCancel className=" size-5 text-red-500" />
-              </button>
-            </div>
-            <hr className="col-span-3 mt-3 border-gray-300" />
-            <p className="mt-2 block text-sm font-normal text-gray-900">
-              {item.Description}
-            </p>
-          </div>
-        ))}
+        <div className="relative w-full ">
+  {/* Scrollable Container */}
+  <div className="flex overflow-x-auto space-x-6 p-4  scrollbar-hide snap-x snap-mandatory">
+  {testimonalData.map((item) => (
+    <div
+      key={item._id}
+      className="p-3 rounded-2xl border shadow-lg text-black min-w-[300px] sm:w-[80%] md:min-w-[350px] md:max-w-sm snap-start"
+    >
+      {/* Description */}
+      <p className="mt-3 text-black text-sm">{item.Description}</p>
+
+      {/* Divider */}
+      <hr className="mt-4 border-gray-400" />
+
+      {/* Actions */}
+      <div className="mt-4 flex justify-between items-center">
+        <span className="block text-base font-medium text-gray-900">{item.Name}</span>
+        <button
+          type="button"
+          onClick={() => handleDelete(item._id)}
+          className="text-red-500 border border-red-500 px-2 py-1 rounded-md text-sm font-semibold transition-transform duration-300 hover:scale-105 flex items-center"
+        >
+          <MdCancel className="size-5 " />
+        </button>
+      </div>
+    </div>
+  ))}
+</div>
+
+</div>
+
       </div>
     </div>
   );

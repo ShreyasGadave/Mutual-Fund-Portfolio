@@ -22,15 +22,17 @@ const Navbar = () => {
     <nav className="bg-gray-100 shadow-md px-6 py-2 relative">
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <div className="w-32 h-auto">
-          <img src={Logo} alt="Aniket Logo" className="h-8" />
+        <div className="w-32 h-auto"> 
+            <NavLink to='/'>  
+            <img src={Logo} alt="Aniket Logo" className="h-8" /></NavLink>
+        
         </div>
         {/* Mobile Menu Icon */}
         <div className="md:hidden z-30 relative" onClick={toggleMenu}>
           {isOpen ? <IoClose size={35} /> : <IoMenu size={35} />}
         </div>
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex items-center justify-center gap-6">
+        <ul className="hidden md:flex  items-center justify-center gap-6">
   <a href="/" className="text-black font-light hover:text-blue-500">Home</a>
   <a href="/#About" className="text-black font-light hover:text-blue-500">About</a>
   <a href="/#Service" className="text-black font-light hover:text-blue-500">Service</a>

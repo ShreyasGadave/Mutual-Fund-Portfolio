@@ -18,13 +18,19 @@ AboutRouter.get("/about", async (req, res) => {
 // ✅ Create a new about section
 AboutRouter.post("/about", async (req, res) => {
   try {
-    const { Title, Description, List } = req.body;
+    const { Title, Description, List=[]} = req.body;
 
-    // ✅ Validate request body
-    if (!Title || !Description || !Array.isArray(List) || List.length === 0) {
+    // ✅ Validate required fields (List is now optional)
+    if (!Title || !Description) {
       return res.status(400).json({
-        message:
-          "All fields are required, and List must have at least one item.",
+        message: "Title and Description are required.",
+      });
+    }
+
+    // ✅ Ensure List is an array if provided
+    if (List && !Array.isArray(List)) {
+      return res.status(400).json({
+        message: "List must be an array.",
       });
     }
 

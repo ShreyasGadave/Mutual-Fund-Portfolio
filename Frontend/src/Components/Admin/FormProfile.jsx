@@ -24,6 +24,8 @@ const FormProfile = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
+        console.log(data);
+        
         if (Array.isArray(data) && data.length > 0) {
           setFormProfile(data[0]);
           setAdminId(data[0]._id);
@@ -73,11 +75,11 @@ const FormProfile = () => {
         <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
           {[
-            { label: "Name", name: "Name", type: "text" },
-            { label: "Address", name: "Address", type: "text" },
-            { label: "Date of Birth", name: "Bod", type: "date" },
-            { label: "Email", name: "Email", type: "email" },
-            { label: "Phone", name: "Phone", type: "tel" },
+            { label: "Name", id:'Name', name: "Name", type: "text" },
+            { label: "Address", id:'Address', name: "Address", type: "text" },
+            { label: "Date of Birth", id:'Bod"', name: "Bod", type: "date" },
+            { label: "Email", id:'Email', name: "Email", type: "email" },
+            { label: "Phone", id:'Phone', name: "Phone", type: "tel" },
           ].map((field) => (
             <div
               key={field.name}
@@ -93,6 +95,7 @@ const FormProfile = () => {
                 <input
                   type={field.type}
                   name={field.name}
+                  id={field.id}
                   value={adminInfo[field.name] || ""}
                   onChange={(e) =>
                     setFormProfile({

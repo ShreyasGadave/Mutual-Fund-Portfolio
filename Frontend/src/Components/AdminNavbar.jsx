@@ -1,34 +1,34 @@
-import React from 'react'
+import React from 'react';
 import { NavLink } from "react-router-dom";
 import Navbar from './Navbar';
 
 const AdminNavbar = () => {
   return (  
     <>
-      <Navbar/>
+      <Navbar />
 
-    <div className='m-5 flex flex-row gap-3 md:gap-2 sm:gap-1 overflow-scroll scrollbar-hide'>
-    <NavLink to='/'> <div className="inline-flex border border-gray-500 items-center rounded-md bg-gray-50 px-4 py-1 text-base  cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset hover:bg-blue-400 hover:text-white">
-       Home
-      </div></NavLink>
-      <NavLink to='/admin/profile'> <div className="inline-flex border border-gray-500 items-center rounded-md bg-gray-50 px-4 py-1 text-base  cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset hover:bg-blue-400 hover:text-white">
-        Profile
-      </div></NavLink>
-      <NavLink to='/admin/about'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
-        About
-      </div></NavLink>
-     
-     <NavLink to='/admin/service'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
-       Service
-      </div></NavLink>
-     
-     <NavLink to='/admin/testimonials'> <div className="inline-flex border border-gray-500  items-center rounded-md bg-gray-50 px-4 py-1 text-base cursor-pointer font-medium text-gray-600 ring-1 ring-gray-500/10 ring-inset  hover:bg-blue-400 hover:text-white">
-      Testimonials
-      </div></NavLink>
-     
-    </div>
+      <div className='m-5 flex flex-row gap-3 md:gap-2 sm:gap-1 overflow-scroll scrollbar-hide'>
+        {[
+          { path: "/", label: "Home" },
+          { path: "/admin/profile", label: "Profile" },
+          { path: "/admin/about", label: "About" },
+          { path: "/admin/service", label: "Service" },
+          { path: "/admin/testimonials", label: "Testimonials" },
+        ].map((link, index) => (
+          <NavLink
+            key={index}
+            to={link.path}
+            className={({ isActive }) =>
+              `inline-flex border items-center rounded-md px-4 py-1 text-base font-medium ring-1 ring-inset cursor-pointer transition-all
+              ${isActive ? "bg-blue-500 text-white border-blue-600 ring-blue-600" : "border-gray-500 bg-gray-50 text-gray-600 ring-gray-500/10 hover:bg-blue-400 hover:text-white"}`
+            }
+          >
+            {link.label}
+          </NavLink>
+        ))}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default AdminNavbar
+export default AdminNavbar;

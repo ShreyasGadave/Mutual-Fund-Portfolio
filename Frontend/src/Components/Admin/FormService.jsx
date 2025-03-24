@@ -42,10 +42,10 @@ const FormService = () => {
   const ServiceHandler = async (e) => {
     e.preventDefault();
   
-    if (!adminInfo.Title || !adminInfo.Description || adminInfo.List.length === 0 || !file) {
-      alert("Please fill in all fields and upload an image.");
-      return;
-    }
+    // if (!adminInfo.Title || !adminInfo.Description || adminInfo.List.length === 0 || !file) {
+    //   alert("Please fill in all fields and upload an image.");
+    //   return;
+    // }
   
     setLoading(true);
   
@@ -120,6 +120,7 @@ const FormService = () => {
     </span>
     <input
       type="file"
+      id="Image"
       name="Image"
       onChange={handleFileChange}
       className="hidden"
@@ -161,6 +162,7 @@ const FormService = () => {
             </label>
             <input
               type="text"
+              id="Title"
               name="Title"
               value={adminInfo.Title}
               onChange={(e) =>
@@ -177,6 +179,7 @@ const FormService = () => {
             </label>
             <textarea
               name="Description"
+              id="Description"
               value={adminInfo.Description}
               onChange={(e) =>
                 setAdminInfo({ ...adminInfo, Description: e.target.value })
@@ -195,6 +198,8 @@ const FormService = () => {
             <div className="flex gap-2">
               <input
                 type="text"
+                id="listItem"
+                name="listItem"
                 value={listItem}
                 onChange={(e) => setListItem(e.target.value)}
                 className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "

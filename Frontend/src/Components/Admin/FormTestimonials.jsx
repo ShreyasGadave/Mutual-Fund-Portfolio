@@ -60,6 +60,7 @@ const  FormTestimonials = () => {
             <input
               type="text"
               name="Name"
+              id="Name"
               value={adminInfo.Name}
               onChange={(e) =>
                 setAdminInfo({ ...adminInfo, Name: e.target.value })
@@ -77,6 +78,7 @@ const  FormTestimonials = () => {
             </label>
             <textarea
               name="Description"
+              id="Description"
               value={adminInfo.Description}
               onChange={(e) =>
                 setAdminInfo({ ...adminInfo, Description: e.target.value })

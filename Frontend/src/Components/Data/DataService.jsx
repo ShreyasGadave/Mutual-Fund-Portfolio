@@ -11,7 +11,7 @@ const DataService = ({ title, isAdmin }) => {
   useEffect(() => {
     const fetchAdminInfo = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/service`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/service`, { mode: 'cors' });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

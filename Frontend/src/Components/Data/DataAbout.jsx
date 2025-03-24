@@ -8,7 +8,7 @@ const DataAbout = ({ title, isAdmin }) => {
   useEffect(() => {
     const fetchAdminInfo = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about`, { mode: 'cors' });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

@@ -37,7 +37,6 @@ ServiceRouter.post(
       });
 
       await newService.save(); // Save to MongoDB
-      console.log("Service Created:", newService);
 
       res
         .status(201)

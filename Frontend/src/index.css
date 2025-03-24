@@ -16,3 +16,8 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  .active{
+    background-color: rgb(203, 203, 213);
+    border-radius: 5px;
+  }

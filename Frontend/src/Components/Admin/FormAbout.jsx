@@ -34,34 +34,40 @@ const FormAbout = () => {
     setAdminInfo({ Title: "", Description: "", List: [] });
     setListItem("");
   };
-
   const AboutHandler = async (e) => {
     e.preventDefault();
-
-    if (
-      !adminInfo.Title ||
-      !adminInfo.Description ||
-      adminInfo.List.length === 0
-    ) {
+  
+    if (!adminInfo.Title || !adminInfo.Description ) {
       alert("Please fill in all fields before submitting.");
       return;
     }
-
+  
+    console.log("Before sending:", adminInfo);  // ✅ Debug adminInfo before submission
+  
     setLoading(true);
-    JSON.stringify(adminInfo, null, 2);
 
+    const requestData = {
+      Title: adminInfo.Title,
+      Description: adminInfo.Description,
+    };
+  
+    // ✅ Only include List if it has items
+    if (adminInfo.List.length > 0) {
+      requestData.List = adminInfo.List;
+    }
+  
+    console.log("Sending data:  requestData :", requestData); 
     try {
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/about`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(adminInfo),
+        body: JSON.stringify(adminInfo), // ✅ Ensure List is included
       });
-
-      if (!response.ok)
-        throw new Error(`HTTP error! Status: ${response.status}`);
-
-      console.log("Response from server:", await response.json());
-      resetForm();
+  
+      const data = await response.json();
+      console.log("Response from server:", data);
+  
+      resetForm(); // Reset only if successful
     } catch (err) {
       console.error("Error submitting data:", err.message);
       alert("Failed to submit data. Please try again.");
@@ -69,6 +75,7 @@ const FormAbout = () => {
       setLoading(false);
     }
   };
+  
 
 
   return (
