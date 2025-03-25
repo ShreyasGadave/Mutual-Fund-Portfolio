@@ -74,10 +74,11 @@ const FormProfile = () => {
     <>
     <StorageStats/>
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
-        <h2 className="text-lg font-semibold text-gray-900">Profile</h2>
+        <h2 className="text-lg font-medium text-gray-700 mt-4">Applicant Information</h2>
+        <p className="text-sm text-gray-500 mt-2">Personal details and application</p>
         <form onSubmit={handleSubmit} className="space-y-3">
           {[
-            { label: "Name", id:'Name', name: "Name", type: "text" },
+            { label: "Full name", id:'Name', name: "Name", type: "text" },
             { label: "Address", id:'Address', name: "Address", type: "text" },
             { label: "Date of Birth", id:'Bod"', name: "Bod", type: "date" },
             { label: "Email", id:'Email', name: "Email", type: "email" },
@@ -88,12 +89,12 @@ const FormProfile = () => {
               className="mt-3  py-1 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
             >
               <hr className="col-span-3 mb-4 border-gray-300" />
-              <dt className="text-sm font-medium text-gray-900">
+              <dt className="text-sm font-medium text-gray-600">
                 <label className="ml-2 block text-base font-medium md:text-base">
                   {field.label}
                 </label>
               </dt>
-              <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">
+              <dd className="mt-1 text-sm text-gray-600 sm:col-span-2 sm:mt-0">
                 <input
                   type={field.type}
                   name={field.name}
