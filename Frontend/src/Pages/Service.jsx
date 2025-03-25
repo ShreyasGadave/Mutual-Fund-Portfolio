@@ -34,18 +34,18 @@ const Service = () => {
   return (
     <div>
       <Navbar />
-      <div className="mt-6 space-y-12">
+      <div className=" p-3 space-y-12">
         {error && <p className="text-red-500">{error}</p>}
         {!serviceData ? (
           <p>Loading...</p>
         ) : (
-          <div key={serviceData._id} className="group border relative p-4 rounded-lg">
+          <div key={serviceData._id} className="group border shadow-lg relative p-4 rounded-lg">
             <img
               src={serviceData.ImageURL}
               className="w-full rounded-lg bg-gray-200 object-cover"
             />
-            <h3 className="mt-4 text-sm text-gray-500">{serviceData.Title}</h3>
-            <p className="text-base font-semibold text-gray-900">
+            <h3 className="text-xl mt-4 font-normal text-gray-900">{serviceData.Title}</h3>
+            <p className="mt-4 text-base text-gray-800 sm:text-sm ">
               {serviceData.Description}
             </p>
             <ul className="list-disc text-sm  ml-5 mt-2">

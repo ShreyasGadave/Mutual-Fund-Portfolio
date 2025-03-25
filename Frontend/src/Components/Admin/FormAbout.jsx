@@ -81,11 +81,12 @@ const FormAbout = () => {
   return (
     <div>
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
-        <h2 className="text-lg font-semibold text-gray-900">About</h2>
+        <h2 className="text-lg font-medium text-gray-700 mt-4">About</h2>
+        <p className="text-sm text-gray-500 mt-2">About details and Features</p>
         <form onSubmit={AboutHandler} className="space-y-4">
           <hr className="col-span-3 mt-2 border-gray-300" />
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-600">
               Title
             </label>
             <input
@@ -96,12 +97,12 @@ const FormAbout = () => {
                 setAdminInfo({ ...adminInfo, Title: e.target.value })
               }
               placeholder="Enter list Title..."
-              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+              className="w-full p-2 text-bas text-gray-500  rounded focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
             />
           </div>
           <hr className="bg-gray-500" />
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-600">
               Description
             </label>
             <textarea
@@ -111,14 +112,14 @@ const FormAbout = () => {
                 setAdminInfo({ ...adminInfo, Description: e.target.value })
               }
               placeholder="Enter list Description..."
-              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+              className="w-full p-2 text-base text-gray-500 rounded focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
               rows="4"
             />
           </div>
           <hr className="col-span-3 mt-2 border-gray-300" />
 
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-600">
               List
             </label>
             <div className="flex gap-2">
@@ -126,7 +127,7 @@ const FormAbout = () => {
                 type="text"
                 value={listItem}
                 onChange={(e) => setListItem(e.target.value)}
-                className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+                className="w-full p-2 text-base text-gray-500  rounded  focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
                 placeholder="Enter list item..."
               />
               <button

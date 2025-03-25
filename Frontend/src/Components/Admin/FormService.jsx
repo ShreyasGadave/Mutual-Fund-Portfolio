@@ -105,17 +105,18 @@ const FormService = () => {
   return (
     <>
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
-        <h2 className="text-lg font-semibold text-gray-900">Service</h2>
+        <h2 className="text-lg font-medium text-gray-700 mt-4">Service</h2>
+        <p className="text-sm text-gray-500 mt-2">Service details and Features</p>
         <form onSubmit={ServiceHandler} className="space-y-4">
           <hr className="col-span-3 mt-2 border-gray-300" />
           <div>
-          <label className="block text-base font-medium text-gray-900">
+          <label className="block text-base font-medium text-gray-600">
               Service Image
             </label>
             <div className="flex items-center gap-4 mt-2">
   {/* File Upload Button */}
   <label className="inline-flex items-center text-black border border-black px-4 py-2 text-sm font-semibold rounded-md transition-transform duration-300 hover:scale-105 cursor-pointer">
-    <span className="flex flex-row text-sm font-semibold justify-center">
+    <span className="flex flex-row text-sm font-medium justify-center">
       <IoImageOutline className="mr-2 text-black size-5" /> Choose File
     </span>
     <input
@@ -130,22 +131,12 @@ const FormService = () => {
   {/* Show File Name & Image Preview */}
   {adminInfo.Image && (
     <div className="relative group w-40">
-      {/* File Name with Hover */}
       <span
         className="text-gray-700 cursor-pointer truncate block w-full"
         title={adminInfo.ImageName} // Show full name on hover
       >
         {adminInfo.ImageName}
       </span>
-
-      {/* Image Preview on Hover */}
-      <div className="absolute left-0 top-6 hidden group-hover:flex items-center justify-center bg-black bg-opacity-75 p-1 rounded-lg z-10">
-        <img
-          src={adminInfo.Image}
-          alt="Uploaded Preview"
-          className="w-32 h-32 object-cover rounded-md border border-gray-400"
-        />
-      </div>
     </div>
   )}
 </div>
@@ -157,7 +148,7 @@ const FormService = () => {
           <hr className="bg-gray-500" />
 
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-700">
               Title
             </label>
             <input
@@ -169,12 +160,12 @@ const FormService = () => {
                 setAdminInfo({ ...adminInfo, Title: e.target.value })
               }
               placeholder="Enter list Title..."
-              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+              className="w-full p-2 rounded text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
             />
           </div>
           <hr className="bg-gray-500" />
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-700">
               Description
             </label>
             <textarea
@@ -185,14 +176,14 @@ const FormService = () => {
                 setAdminInfo({ ...adminInfo, Description: e.target.value })
               }
               placeholder="Enter list Description..."
-              className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+              className="w-full p-2 rounded text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
               rows="4"
             />
           </div>
           <hr className="col-span-3 mt-2 border-gray-300" />
 
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-700">
               List
             </label>
             <div className="flex gap-2">
@@ -202,7 +193,7 @@ const FormService = () => {
                 name="listItem"
                 value={listItem}
                 onChange={(e) => setListItem(e.target.value)}
-                className="w-full p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-700 bg-transparent "
+                className="w-full p-2 rounded text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
                 placeholder="Enter list item..."
               />
               <button

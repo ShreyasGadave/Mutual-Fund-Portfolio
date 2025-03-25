@@ -11,14 +11,17 @@ export default function StorageStats() {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-xl font-bold">MongoDB Storage Stats</h2>
+    <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
+      <h2 className="text-base text-gray-700 font-medium">MongoDB Storage Stats</h2>
       {stats ? (
         <ul className="mt-3">
-          <li>📦 Storage Size: {stats.storageSizeMB} MB</li>
-          <li>📂 Collections: {stats.collections}</li>
-          <li>
-  📦 Storage Available: {(100 - ((stats.storageSizeMB / 512) * 100)).toFixed(2)}%
+          <li className="mt-2 block text-base font-normal text-gray-600"> Storage Size: {stats.storageSizeMB} MB</li>
+          <hr className="col-span-3 mt-2 border-gray-300" />
+
+          <li className="mt-2 block text-base font-normal text-gray-600">Collections: 0{stats.collections}</li>
+          <hr className="col-span-3 mt-2 border-gray-300" />
+
+          <li className="mt-2 block text-base font-normal text-gray-600"> Storage Available: {(100 - ((stats.storageSizeMB / 512) * 100)).toFixed(2)}%
 </li>
 
         </ul>

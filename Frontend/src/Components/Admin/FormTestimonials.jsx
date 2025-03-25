@@ -48,13 +48,14 @@ const  FormTestimonials = () => {
   return (
     <>
       <div className="p-5 m-5 border border-gray-300 rounded sm:m-2 shadow-lg bg-white">
-        <h2 className="text-lg font-semibold text-gray-900">Testimonials</h2>
+        <h2 className="text-lg font-medium text-gray-700 mt-4">Testimonials</h2>
+        <p className="text-sm text-gray-500 mt-2">Testimonials details and name</p>
         <form onSubmit={TestimonialsHandler} className="space-y-4">
           <hr className="col-span-3 mt-2 border-gray-300" />
 
           {/* Name Input */}
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-700">
               Name
             </label>
             <input
@@ -66,14 +67,14 @@ const  FormTestimonials = () => {
                 setAdminInfo({ ...adminInfo, Name: e.target.value })
               }
               placeholder="Enter your name..."
-              className="w-full p-2 rounded-md  bg-transparent "
+              className="w-full p-2 rounded text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent  "
             />
           </div>
           <hr className="col-span-3 mt-2 border-gray-300" />
 
           {/* Description Textarea */}
           <div className="space-y-2">
-            <label className="block text-base font-medium text-gray-900">
+            <label className="block text-base font-medium text-gray-700">
               Description
             </label>
             <textarea
@@ -84,7 +85,7 @@ const  FormTestimonials = () => {
                 setAdminInfo({ ...adminInfo, Description: e.target.value })
               }
               placeholder="Enter your feedback..."
-              className="w-full p-2 rounded-md bg-transparent "
+              className="w-full p-2 rounded text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-500 bg-transparent "
               rows="4"
             />
           </div>
