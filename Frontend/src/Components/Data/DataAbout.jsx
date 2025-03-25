@@ -17,7 +17,7 @@ const DataAbout = ({ title, isAdmin }) => {
       } catch (err) {
         console.error("Error fetching data:", err.message);
       }
-    };
+    }; 
 
     fetchAdminInfo();
   }, []);

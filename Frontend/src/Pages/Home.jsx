@@ -7,6 +7,7 @@ import Contact from "../Components/Contact";
 import About from "../Components/About";
 import Footer from "../Components/Footer";
 import DataService from "../Components/Data/DataService";
+import StorageStats from "../Components/DBStorage";
 
 const Home = () => {
   return (
@@ -19,7 +20,7 @@ const Home = () => {
       <About />
       <Contact />
       <Footer />
-    </div>
+     </div>
   );
 };
 

@@ -6,6 +6,8 @@ const AdminRouter = require("./Controller/ProfileRouter");
 const ServiceRouter = require("./Controller/ServiceRouter");
 const AboutRouter = require("./Controller/AboutRouter");
 const TestimonialRouter = require("./Controller/TestimonialsRouter");
+const ServiceID = require("./Controller/ServiceID");
+const DBRouter = require("./Controller/Database");
 
 const app = express();
 const PORT = process.env.PORT || 3009;
@@ -31,6 +33,10 @@ app.use("/admin",ServiceRouter);
 app.use("/admin",AboutRouter);
 
 app.use("/admin",TestimonialRouter);
+
+app.use(ServiceID)
+
+app.use(DBRouter)
 
 app.listen(PORT, () =>
   console.log(`Server running on http://localhost:${PORT}`)
