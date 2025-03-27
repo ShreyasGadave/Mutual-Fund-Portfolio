@@ -7,6 +7,9 @@ import AdminAbout from './Pages/AdminAbout'
 import AdminTestimonials from './Pages/AdminTestimonials'
 import Error from './Components/Error/Error'
 import AdminInfo from './Pages/AdminProfile'
+import Admin from './Pages/Admin'
+import ProtectedRoute from '../Utils/ProtectedRouter'
+
 
 const App = () => {
   return (
@@ -14,10 +17,12 @@ const App = () => {
     <Routes>
 <Route path='/' element={ <Home/>}/>
 <Route path='/service/:id' element={ <Service/>}/>
+<Route path='/admin' element={ <Admin/>}/>
+<Route element={<ProtectedRoute />}> 
 <Route path='/admin/profile' element={<AdminInfo/>}/>
 <Route path='/admin/about' element={<AdminAbout/>}/>
 <Route path='/admin/service' element={<AdminServices/>}/>
-<Route path='/admin/testimonials' element={<AdminTestimonials/>}/>
+<Route path='/admin/testimonials' element={<AdminTestimonials/>}/> </Route>
 <Route path='*' element={ <Error/>}/>
 
     </Routes>

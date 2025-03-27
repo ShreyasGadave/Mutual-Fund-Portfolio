@@ -8,6 +8,7 @@ const AboutRouter = require("./Controller/AboutRouter");
 const TestimonialRouter = require("./Controller/TestimonialsRouter");
 const ServiceID = require("./Controller/ServiceID");
 const DBRouter = require("./Controller/Database");
+const LoginRouter = require("./Controller/LoginRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3009;
@@ -25,6 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(LoginRouter)
 
 app.use("/admin",AdminRouter);
 

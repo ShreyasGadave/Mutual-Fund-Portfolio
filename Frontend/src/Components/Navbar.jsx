@@ -8,15 +8,7 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-  };
-
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "#About" },
-    { name: "Service", path: "#Service" },
-    { name: "Contact", path: "#Contact" },
-    { name: "Admin", path: "admin/profile" },
-  ];
+  };;
 
   return (
     <nav className="bg-gray-100 shadow-md px-6 py-2 relative">
@@ -37,7 +29,7 @@ const Navbar = () => {
   <a href="/#About" className="text-black font-light hover:text-blue-500">About</a>
   <a href="/#Service" className="text-black font-light hover:text-blue-500">Service</a>
   <a href="/#Contact" className="text-black font-light hover:text-blue-500">Contact</a>
-  <NavLink to='/admin/profile'>
+  <NavLink to='/admin'>
   <button
     type="button"
     className="text-black border border-gray-500 px-3 py-1 text-sm font-light transition-transform duration-300 hover:scale-105 rounded-md"
@@ -48,14 +40,14 @@ const Navbar = () => {
 </ul>
 
       </div>
-      {/* Overlay Background */}
+
       <div
         className={`fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 z-20 transition-opacity duration-300 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-        onClick={toggleMenu} // Click outside to close
+        onClick={toggleMenu} 
       ></div>
-      {/* Right-Side Sliding Menu */}
+
       <div
         className={`fixed top-0 right-0 w-3/4 h-full bg-white z-20 shadow-lg transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
