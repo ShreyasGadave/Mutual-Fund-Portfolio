@@ -53,7 +53,7 @@ const DataAbout = ({ title, isAdmin, limit }) => {
             className=" rounded p-2"
           >
             <div className="flex flex-row justify-between">
-              <div className="block text-base  font-medium text-gray-900">
+              <div className="block text-base sm:text-lg font-medium text-gray-900">
                 {item.Title}
               </div>
              
@@ -74,7 +74,7 @@ const DataAbout = ({ title, isAdmin, limit }) => {
             <hr className="col-span-3 mt-3 border-gray-300" />
             <ul className="list-disc text-sm ml-5 mt-2">
               {item.List.map((listItem, index) => (
-                <li key={index}>{listItem}</li>
+                <li key={index} className="text-base sm:text-lg">{listItem}</li>
               ))}
             </ul>
 

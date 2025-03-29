@@ -12,7 +12,7 @@ const Contact = () => {
       <p className="text-gray-500 mt-2 max-w-lg">
   Want to chat? Just shoot me a DM{" "}
   <a
-    href="https://wa.me/7028934703"
+    href={`https://wa.me/7028934703?text=Hello Sir! I came across your website and wanted to connect.?`}
     className="text-green-500 mx-1 "
     target="_blank"
     rel="noopener noreferrer"

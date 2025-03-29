@@ -48,7 +48,7 @@ const Footer = () => {
           
           </ul> </div>
         <div className="font-normal text-base "> Contact <ul className="mt-3">
-          <li>+7028934702</li>
+          <li>+91 7028934702</li>
           <li>shreyas@gmail.com</li></ul></div>
 
       </div>

@@ -120,7 +120,7 @@ const DataService = ({ title, isAdmin }) => {
               {serviceData.map((item) => (
                 <div
                   key={item._id}
-                  className="group border relative p-2 rounded-lg "
+                  className="group border relative p-2 rounded-lg mt-4"
                 >
                   <div className="flex flex-row  ">
                     <img
@@ -142,7 +142,7 @@ const DataService = ({ title, isAdmin }) => {
                         <h3 className=" relative mt-4 text-base font-medium text-gray-900 overflow-hidden text-ellipsis line-clamp-4 whitespace-normal">
                           <p>{item.Title}</p>{" "}
                           <a
-                            href={`https://wa.me/7028934703`}
+                            href={`https://wa.me/7028934703?text=Hello Sir! I'm interested in your ${item.Title} service. Could you please provide more information?`}
                             target="_blank"
                             rel="noopener noreferrer"
                           >
