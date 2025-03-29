@@ -3,11 +3,32 @@ import { MdCancel } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { TiDelete } from "react-icons/ti";
 
 const DataService = ({ title, isAdmin }) => {
   const [serviceData, setServiceData] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [editedText, setEditedText] = useState("");
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for controlling the delete confirmation modal
+  const [itemToDeleteId, setItemToDeleteId] = useState(null); // State to store the ID of the item to delete
+
+  const openDeleteModal = (id) => {
+    setItemToDeleteId(id);
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+    setItemToDeleteId(null);
+  };
+
+  const confirmDelete = async () => {
+    if (itemToDeleteId) {
+      await handleDelete(itemToDeleteId); // Call the original delete function
+    }
+    closeDeleteModal();
+  };
 
   useEffect(() => {
     const fetchAdminInfo = async () => {
@@ -152,16 +173,16 @@ const DataService = ({ title, isAdmin }) => {
                           <button
                             type="button"
                             onClick={() => handleEdit(item)}
-                            className="inline-flex items-center text-green-500 rounded-md border border-green-500 px-2 py-1 text-sm font-semibold transition-transform duration-300 hover:scale-105"
+                            className=" hidden items-center text-green-500 rounded-md border border-green-500 px-2 py-1 text-sm font-semibold transition-transform duration-300 hover:scale-105"
                           >
-                            <FaEdit className=" size-5 text-green-500" />
+                            <FaEdit className="  size-5 text-green-500" />
                             {/* Edit */}
                           </button>
                         )}
 
                         <button
                           type="button"
-                          onClick={() => handleDelete(item._id)}
+                          onClick={() => openDeleteModal(item._id)}
                           className="inline-flex items-center text-red-500 rounded-md border border-red-500 px-2 py-1 text-sm font-semibold transition-transform duration-300 hover:scale-105"
                         >
                           <MdCancel className=" size-5 text-red-500" />
@@ -173,6 +194,48 @@ const DataService = ({ title, isAdmin }) => {
                 </div>
               ))}
             </div>
+
+            {/* Delete Confirmation Modal */}
+            {isDeleteModalOpen && ( // Conditionally render the modal
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 p-10 flex justify-center items-center">
+                <motion.div
+                  className="bg-white rounded-md p-6"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="flex flex-col justify-center text-center gap-4 ">
+                    <div>
+                      <TiDelete className=" m-auto size-10 border border-red-500 rounded-full  text-red-500 bg-red-100 " />
+                    </div>
+                    <div>
+                      <p className="text-base sm:text-lg font-semibold mb-4">
+                        Delete Service
+                      </p>
+                      <p className="text-sm text-gray-500 max-w-[30ch] ">
+                        Are you sure you want to delete this Service? This
+                        action cannot be undone.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center mt-4 ">
+                    <button
+                      onClick={closeDeleteModal} // Close the modal
+                      className="px-5 py-1.5 bg-gray-100 border border-gray-500 text-gray-700 font-semibold rounded-md mr-2 hover:bg-gray-400"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={confirmDelete} // Call the delete confirmation function
+                      className="px-5 py-1.5 bg-red-600 text-white font-semibold  rounded-md hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </motion.div>
+              </div>
+            )}
           </div>
         </div>
       </div>

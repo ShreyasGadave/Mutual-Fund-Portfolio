@@ -121,18 +121,21 @@ const DataTestimonials = ({ title, isAdmin }) => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="flex flex-col justify-center text-center sm:flex-row  gap-4 ">
+            <div className="flex flex-col justify-center text-center gap-4 ">
               <div>
                 <TiDelete className=" m-auto size-10 border border-red-500 rounded-full  text-red-500 bg-red-100 " />
-              </div> 
+              </div>
               <div>
-                <p className="text-base sm:text-lg font-semibold mb-4">Delete Testimonial</p>
-                <p className="text-sm text-gray-500 max-w-[60ch]">
-                Are you sure you want to delete this testimonial? This action cannot be undone. 
+                <p className="text-base sm:text-lg font-semibold mb-4">
+                  Delete Service
+                </p>
+                <p className="text-sm text-gray-500 max-w-[30ch] ">
+                  Are you sure you want to delete this Service? This action
+                  cannot be undone.
                 </p>
               </div>
             </div>
-            <div className="flex justify-center mt-4 sm:justify-end">
+            <div className="flex justify-center mt-4 ">
               <button
                 onClick={closeDeleteModal} // Close the modal
                 className="px-5 py-1.5 bg-gray-100 border border-gray-500 text-gray-700 font-semibold rounded-md mr-2 hover:bg-gray-400"
