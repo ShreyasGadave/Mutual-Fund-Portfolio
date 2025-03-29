@@ -87,7 +87,7 @@ const FormAbout = () => {
           <hr className="col-span-3 mt-2 border-gray-300" />
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-600">
-              Title
+              Title <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -103,7 +103,7 @@ const FormAbout = () => {
           <hr className="bg-gray-500" />
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-600">
-              Description
+              Description <span className="text-red-500">*</span>
             </label>
             <textarea
               name="Description"

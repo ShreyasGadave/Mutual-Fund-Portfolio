@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const ProtectedRoute = () => {
@@ -7,11 +7,13 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log("Token:", token); // Debugging
     if (token) {
       setIsAuthenticated(true);
     }
-    setLoading(false); // Stop loading after checking
+    setLoading(false);
   }, []);
+  
 
   if (loading) return null; // Prevent rendering until check is complete
 

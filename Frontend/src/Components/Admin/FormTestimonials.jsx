@@ -56,7 +56,7 @@ const  FormTestimonials = () => {
           {/* Name Input */}
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-700">
-              Name
+              Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -75,7 +75,7 @@ const  FormTestimonials = () => {
           {/* Description Textarea */}
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-700">
-              Description
+              Description <span className="text-red-500">*</span>
             </label>
             <textarea
               name="Description"

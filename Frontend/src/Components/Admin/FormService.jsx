@@ -111,7 +111,7 @@ const FormService = () => {
           <hr className="col-span-3 mt-2 border-gray-300" />
           <div>
           <label className="block text-base font-medium text-gray-600">
-              Service Image
+              Service Image <span className="text-red-500">*</span>
             </label>
             <div className="flex items-center gap-4 mt-2">
   {/* File Upload Button */}
@@ -149,7 +149,7 @@ const FormService = () => {
 
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-700">
-              Title
+              Title <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -166,7 +166,7 @@ const FormService = () => {
           <hr className="bg-gray-500" />
           <div className="space-y-2">
             <label className="block text-base font-medium text-gray-700">
-              Description
+              Description <span className="text-red-500">*</span>
             </label>
             <textarea
               name="Description"
