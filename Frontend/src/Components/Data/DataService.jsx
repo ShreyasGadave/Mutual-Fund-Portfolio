@@ -82,17 +82,22 @@ const DataService = ({ title, isAdmin }) => {
   const navigate = useNavigate();
 
   return (
-    <div id="Service">
-      <div className=" p-3 m-3 rounded sm:m-4 ">
+    <div id="Service" className="mt-10">
+      <div className=" p-3  rounded sm:m-4 ">
+      <section className="text-center max-w-xl mx-auto">
+  <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
+  <p className="text-gray-500 mt-2 text-sm cursor-pointer">
+  We provide expert financial guidance, investment solutions, and mutual fund distribution services tailored to your needs. Our goal is to help you make informed decisions for a secure and prosperous future."
+  </p>
+</section>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-5 sm:py-2 lg:max-w-none lg:py-4">
-            <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
 
-            <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
+            <div className="mt-6 space-y-4 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {serviceData.map((item) => (
                 <div
                   key={item._id}
-                  className="group border relative p-4 rounded-lg "
+                  className="group border relative p-2 rounded-lg "
                 >
                   <div className="flex flex-row  ">
                     <img
@@ -100,6 +105,7 @@ const DataService = ({ title, isAdmin }) => {
                       src={item.ImageURL}
                       className="w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square"
                     />
+                   
                   </div>
                   <div>
                     {editingItem === item._id ? (

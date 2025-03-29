@@ -18,10 +18,10 @@ AboutRouter.get("/about", async (req, res) => {
 // ✅ Create a new about section
 AboutRouter.post("/about", async (req, res) => {
   try {
-    const { Title, Description, List=[]} = req.body;
+    const { Title=[], Description, List=[]} = req.body;
 
     // ✅ Validate required fields (List is now optional)
-    if (!Title || !Description) {
+    if (!Description) {
       return res.status(400).json({
         message: "Title and Description are required.",
       });
@@ -56,17 +56,6 @@ AboutRouter.post("/about", async (req, res) => {
   }
 });
 
-// // ✅ Get a single about section by ID
-// AboutRouter.get("/admin/about/:id", async (req, res) => {
-//   try {
-//     const about = await AboutModel.findById(req.params.id).select("-__v");
-//     if (!about) return res.status(404).json({ message: "About section not found" });
-//     res.status(200).json(about);
-//   } catch (error) {
-//     console.error("Error fetching about section:", error);
-//     res.status(500).json({ message: "Error fetching about section", error: error.message });
-//   }
-// });
 
 // ✅ Delete an about section by ID
 AboutRouter.delete("/about/:id", async (req, res) => {

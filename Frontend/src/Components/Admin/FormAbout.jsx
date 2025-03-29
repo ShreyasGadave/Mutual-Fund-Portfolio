@@ -37,7 +37,7 @@ const FormAbout = () => {
   const AboutHandler = async (e) => {
     e.preventDefault();
   
-    if (!adminInfo.Title || !adminInfo.Description ) {
+    if (!adminInfo.Description ) {
       alert("Please fill in all fields before submitting.");
       return;
     }

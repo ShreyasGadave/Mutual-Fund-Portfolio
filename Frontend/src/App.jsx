@@ -9,6 +9,7 @@ import Error from './Components/Error/Error'
 import AdminInfo from './Pages/AdminProfile'
 import Admin from './Pages/Admin'
 import ProtectedRoute from '../Utils/ProtectedRouter'
+import About from './Components/About'
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
 <Route path='/' element={ <Home/>}/>
 <Route path='/service/:id' element={ <Service/>}/>
 <Route path='/admin' element={ <Admin/>}/>
+<Route path='/about' element={ <About/>}/>
 <Route element={<ProtectedRoute />}> 
 <Route path='/admin/profile' element={<AdminInfo/>}/>
 <Route path='/admin/about' element={<AdminAbout/>}/>

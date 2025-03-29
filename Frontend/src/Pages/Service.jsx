@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import { useParams } from "react-router-dom";
+import Contact from "../Components/Contact";
+import Footer from "../Components/Footer";
 
 const Service = () => {
   const { id } = useParams(); // Extract id from URL
@@ -20,7 +22,6 @@ const Service = () => {
         }
 
         const data = await response.json();
-        console.log(data);
         
         setServiceData(data); // Set the service data in state
       } catch (err) {
@@ -34,7 +35,7 @@ const Service = () => {
   return (
     <div>
       <Navbar />
-      <div className=" p-3 space-y-12">
+      <div className="mx-5  mt-4 p-3 space-y-12">
         {error && <p className="text-red-500">{error}</p>}
         {!serviceData ? (
           <p>Loading...</p>
@@ -56,6 +57,8 @@ const Service = () => {
           </div>
         )}
       </div>
+      <Contact />
+      <Footer />
     </div>
   );
 };
