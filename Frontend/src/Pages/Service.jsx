@@ -54,7 +54,7 @@ const Service = () => {
             <h3 className=" relative text-xl mt-4 font-normal text-gray-900">
               {serviceData.Title}
               <a
-                href={`https://wa.me/7028934703`}
+                href={`https://wa.me/7028934703?text=Hello Sir! I'm interested in your ${serviceData.Title} service. Could you please provide more information?`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -8,6 +8,19 @@ const MovingBar = () => {
     "✦ Smart Investing",
     "✦ Secure Future",
     "✦ Financial Success Starts Here",
+    "✦ Invest Wisely",
+    "✦ Wealth Creation",
+    "✦ Financial Growth",
+    "✦ Future Secured",
+    "✦ Smart Investments",
+    "✦ Grow Your Money",
+    "✦ Plan Your Future",
+    "✦ Financial Freedom",
+    "✦ Investment Solutions",
+    "✦ Building Wealth Together",
+    "✦ Your Financial Partner",
+    "✦ Investing Made Easy",
+    "✦ Achieve Your Goals",
   ];
 
   // Duplicate the array for seamless looping
@@ -15,11 +28,10 @@ const MovingBar = () => {
 
   return (
     <div className="border mt-10 border-gray-500 bg-yellow-200 py-2 overflow-hidden whitespace-nowrap relative rotate-1 cursor-wait">
-
       <motion.div
         className="flex gap-6"
         animate={{ x: ["0%", "-100%"] }} // Moves text from right to left
-        transition={{ repeat: Infinity, duration: 40, ease: "linear" }} // Adjust duration for speed
+        transition={{ repeat: Infinity, duration: 90, ease: "linear" }} // Adjust duration for speed
         style={{ display: "flex", width: "max-content" }} // Prevents breaking
       >
         {scrollingText.map((text, index) => (
