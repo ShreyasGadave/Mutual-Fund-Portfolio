@@ -8,7 +8,7 @@ const AdminAbout = () => {
     <div>
       <AdminNavbar />
       <FormAbout />
-      <DataAbout title="About Me" isAdmin={true} /> 
+      <DataAbout title="About Me" isAdmin={true} limit={999}/> 
     </div>
   );
 };

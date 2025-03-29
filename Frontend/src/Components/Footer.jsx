@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 const Footer = () => {
   return (
 <>
-    <div className="bg-gray-700 mt-5 rounded-t-3xl text-gray-200 md:mt-10 p-10 w-full">
+    <div className="bg-gray-700 mt-10 rounded-t-3xl text-gray-200 md:mt-10 p-10 w-full">
       
       <div className="flex flex-col sm:flex-row md:flex-row gap-10">
         <div className="">
@@ -41,10 +41,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="font-normal text-base "> Navigation <ul className="mt-3">
-          <li>Home</li>
-          <li>About</li>
-          <li>Service</li>
-          <li>Contact</li>
+          <a href="#Home" className="hover:text-blue-500"> <li>Home</li> </a>
+          <a href="#About" className="hover:text-blue-500"> <li>About</li> </a>
+          <a href="#Service" className="hover:text-blue-500"> <li>Service</li> </a>
+          <a href="#Contact" className="hover:text-blue-500"> <li>Contact</li> </a>
           
           </ul> </div>
         <div className="font-normal text-base "> Contact <ul className="mt-3">

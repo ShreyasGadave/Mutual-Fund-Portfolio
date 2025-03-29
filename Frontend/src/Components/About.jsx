@@ -8,7 +8,7 @@ const About = () => {
   return (
     <div id='About'>
 <Navbar/>
-<DataAbout title="About Me" isAdmin={false} /> 
+<DataAbout title="About Me" isAdmin={false} limit={5} /> 
 <Contact/>
 <Footer/>
 

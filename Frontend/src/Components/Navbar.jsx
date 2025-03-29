@@ -11,7 +11,7 @@ const Navbar = () => {
   };;
 
   return (
-    <div >
+    <div id="Home">
     <nav className=" border mt-5 mx-8 bg-gray-200  shadow-md px-6 py-2 rounded-full relative">
       <div className="flex justify-between items-center">
         {/* Logo */}

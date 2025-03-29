@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div id='Contact'> 
+    <div id='Contact' className='mt-20'> 
       <section className="flex flex-col items-center text-center py-10 px-4 cursor-pointer">
 
       {/* Heading */}

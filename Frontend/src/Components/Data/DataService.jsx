@@ -82,17 +82,19 @@ const DataService = ({ title, isAdmin }) => {
   const navigate = useNavigate();
 
   return (
-    <div id="Service" className="mt-10">
+    <div id="Service" className="mt-20">
       <div className=" p-3  rounded sm:m-4 ">
-      <section className="text-center max-w-xl mx-auto">
-  <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
-  <p className="text-gray-500 mt-2 text-sm cursor-pointer">
-  We provide expert financial guidance, investment solutions, and mutual fund distribution services tailored to your needs. Our goal is to help you make informed decisions for a secure and prosperous future."
-  </p>
-</section>
+        <section className="text-center max-w-xl mx-auto">
+          <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
+          <p className="text-gray-500 mt-2 text-sm cursor-pointer">
+            We provide expert financial guidance, investment solutions, and
+            mutual fund distribution services tailored to your needs. Our goal
+            is to help you make informed decisions for a secure and prosperous
+            future."
+          </p>
+        </section>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-5 sm:py-2 lg:max-w-none lg:py-4">
-
             <div className="mt-6 space-y-4 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
               {serviceData.map((item) => (
                 <div
@@ -105,7 +107,6 @@ const DataService = ({ title, isAdmin }) => {
                       src={item.ImageURL}
                       className="w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square"
                     />
-                   
                   </div>
                   <div>
                     {editingItem === item._id ? (
@@ -117,9 +118,18 @@ const DataService = ({ title, isAdmin }) => {
                       />
                     ) : (
                       <>
-                        <h3 className=" mt-3 text-base font-medium text-gray-900 overflow-hidden text-ellipsis line-clamp-4 whitespace-normal">
-                          {item.Title}
-                          <p className="mt-3 text-sm text-gray-500   ">
+                        <h3 className=" relative mt-4 text-base font-medium text-gray-900 overflow-hidden text-ellipsis line-clamp-4 whitespace-normal">
+                          <p>{item.Title}</p>{" "}
+                          <a
+                            href={`https://wa.me/7028934703`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <p className="text-base font-medium absolute right-0 top-0 border text-gray-900 bg-green-200 rounded-full border-green-400 px-3 cursor-pointer hover:bg-green-500">
+                              Book Now
+                            </p>
+                          </a>
+                          <p className="mt-4 text-sm text-gray-500   ">
                             {item.Description}
                           </p>
                         </h3>

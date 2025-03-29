@@ -38,7 +38,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
   }, []);
 
   return (
-    <div className="p-5 sm:m-2 bg-white">
+    <div className="p-5 mt-10 sm:m-2 bg-white">
       {/* Header */}
       <section className="text-center max-w-xl mx-auto">
         <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>

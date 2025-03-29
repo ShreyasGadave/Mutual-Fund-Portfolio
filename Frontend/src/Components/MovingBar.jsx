@@ -14,7 +14,7 @@ const MovingBar = () => {
   const scrollingText = [...items, ...items];
 
   return (
-    <div className="border border-gray-500 bg-yellow-200 py-2 overflow-hidden whitespace-nowrap relative rotate-1 cursor-wait">
+    <div className="border mt-10 border-gray-500 bg-yellow-200 py-2 overflow-hidden whitespace-nowrap relative rotate-1 cursor-wait">
 
       <motion.div
         className="flex gap-6"

@@ -45,15 +45,15 @@ const DataAbout = ({ title, isAdmin, limit }) => {
 
   return (
     <div id="About">
-      <div className="p-5 rounded sm:m-2  bg-white">
+      <div className="p-5 rounded sm:m-2  py-10 bg-white">
       <h2 className=" flex flex-col text-2xl items-center text-center lg:text-3xl font-bold text-gray-900 cursor-pointer">{title}</h2>
         {aboutData.map((item) => (
           <div
             key={item._id}
-            className=" rounded p-4"
+            className=" rounded p-2"
           >
             <div className="flex flex-row justify-between">
-              <div className="block text-base font-medium text-gray-900">
+              <div className="block text-base  font-medium text-gray-900">
                 {item.Title}
               </div>
              
@@ -68,7 +68,7 @@ const DataAbout = ({ title, isAdmin, limit }) => {
               )}
             </div>
             <hr className="col-span-3 mt-3 border-gray-300" />
-            <p className="mt-2 block text-lg font-normal text-gray-900">
+            <p className="mt-2  block text-sm sm:text-lg font-normal text-gray-900">
               {item.Description}
             </p>
             <hr className="col-span-3 mt-3 border-gray-300" />
@@ -77,9 +77,17 @@ const DataAbout = ({ title, isAdmin, limit }) => {
                 <li key={index}>{listItem}</li>
               ))}
             </ul>
-          {!isAdmin ?   <p onClick={()=>navigate('/about')} className="px-4 py-1 border bg-gray-100 rounded-full border-gray-600 w-fit text-base">About more...</p> : ''} 
+
           </div>
         ))}
+         {limit >= 2 ? null : ( // ✅ Corrected conditional rendering
+          <p
+            onClick={() => navigate("/about")}
+            className=" cursor-pointer px-4 py-1 border bg-gray-100 rounded-full border-gray-600 w-fit text-base"
+          >
+            About more...
+          </p>
+        )}
       </div>
     </div>
   );
