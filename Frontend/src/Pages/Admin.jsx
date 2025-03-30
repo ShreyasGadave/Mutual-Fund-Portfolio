@@ -39,7 +39,8 @@ const Admin = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token); // ✅ Store JWT token
         resetForm();
-        navigate("/admin/profile"); // ✅ Use React Router to navigate
+        navigate("/admin/profile")
+        ; // ✅ Use React Router to navigate
       } else {
         alert(data.message || "Login failed. Please try again.");
       }

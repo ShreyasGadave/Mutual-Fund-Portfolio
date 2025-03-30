@@ -82,7 +82,10 @@ const DataAbout = ({ title, isAdmin, limit }) => {
         ))}
          {limit >= 2 ? null : ( // ✅ Corrected conditional rendering
           <p
-            onClick={() => navigate("/about")}
+          onClick={() => {
+            navigate("/about");  // Navigate to the about page
+            window.scrollTo({ top: 0, behavior: "smooth" });  // Scroll to top smoothly
+          }}
             className=" cursor-pointer px-4 py-1 border bg-gray-100 rounded-full border-gray-600 w-fit text-base"
           >
             About more...
