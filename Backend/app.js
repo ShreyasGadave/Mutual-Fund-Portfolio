@@ -12,7 +12,7 @@ const LoginRouter = require("./Controller/LoginRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3009;
-const MONGO_URI = process.env.MONGO_URI/AniketMangave;
+const MONGO_URI = process.env.MONGO_URI;
 
 app.use(cors({ origin: process.env.FRONTEND_URI || "*", CredentialCloudinary: true }));
 app.use(express.json());
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
-
+ 
 app.use(LoginRouter)
 
 app.use("/admin",AdminRouter);
