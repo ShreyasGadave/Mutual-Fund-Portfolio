@@ -47,21 +47,24 @@ const Service = () => {
             key={serviceData._id}
             className="group border shadow-lg relative p-4 rounded-lg"
           >
-            <img
-              src={serviceData.ImageURL}
-              className="w-full rounded-lg bg-gray-200 object-cover"
-            />
-            <h3 className=" relative text-xl mt-4 font-normal text-gray-900">
-              {serviceData.Title}
+            <div className=" relative">
+              <img
+                src={serviceData.ImageURL}
+                className="w-full rounded-lg bg-gray-200 object-cover"
+              />
               <a
                 href={`https://wa.me/7028934703?text=Hello Sir! I'm interested in your ${serviceData.Title} service. Could you please provide more information?`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <p className="text-base  font-medium absolute right-0 top-0 border text-gray-900 bg-green-200 rounded-full border-green-400 px-3 cursor-pointer hover:bg-green-500">
-                  Book Now
-                </p>
-              </a>{" "}
+               <p className="text-base font-medium absolute right-2 bottom-2 border-1 text-gray-600 bg-blue-200 rounded-full border-blue-800 px-3 sm:px-5 sm:py-3 cursor-pointer shadow hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-200 ease-in-out">
+                        Book Now
+                      </p>
+              </a>
+            </div>
+
+            <h3 className=" relative text-xl mt-4 font-normal text-gray-900">
+              {serviceData.Title}
             </h3>
             <p className="mt-4 text-sm sm:text-lg  text-gray-800  ">
               {serviceData.Description}

@@ -84,7 +84,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
         <motion.div
           className="flex space-x-6 p-4"
           animate={{ x: ["0%", "-100%"] }} // Moves from right to left
-          transition={{ repeat: Infinity, duration: 180, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 120, ease: "linear" }}
         >
           {testimonalData.map((item, index) => (
             <div
