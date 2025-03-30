@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/AniketLogo.svg";
-import Login from "../assets/loginIMG.svg";
 import Navbar from "../Components/Navbar";
-import { SlInfo } from "react-icons/sl";
-import Footer from "../Components/Footer";
 
 const Admin = () => {
   const navigate = useNavigate(); // ✅ React Router navigation
@@ -58,7 +55,8 @@ const Admin = () => {
     <>
       <Navbar />
 <div className="px-5 pb-10">
-      <div className="flex flex-col  sm:flex-row m-auto w-fit border rounded bg-red-50 justify-center mt-10 sm:mt-30 ">
+<div className="flex flex-col sm:flex-row m-auto w-fit border rounded bg-gradient-to-b from-blue-200 to-purple-400 justify-center mt-10 sm:mt-30">
+
         <div className=" flex items-center flex-col sm:static">
           <div className=" md:py-20 px-5 mt-10 flex flex-col items-center justify-center">
             <div>
@@ -80,8 +78,7 @@ const Admin = () => {
         <div className="p-5 mt-4 sm:mt-0 sm:p-20 border bg-white border-gray-300 rounded-t-3xl   sm:rounded-l-3xl  sm:rounded-tr   ">
           <div className=" ">
             {/* <img alt="Your Company" src={Logo}  /> */}
-            <h2 className=" font-bold text-3xl sm:text-5xl leading-tight ">
-              Hey, <br />
+            <h2 className=" font-bold text-3xl sm:text-5xl leading-5">
               Welcome Back!
             </h2>
             <p className="text-base text-gray-500">
