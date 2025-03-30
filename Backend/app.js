@@ -12,7 +12,7 @@ const LoginRouter = require("./Controller/LoginRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3009;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGODB_URI;
 
 app.use(cors({ origin: process.env.FRONTEND_URI || "*", CredentialCloudinary: true }));
 app.use(express.json());
