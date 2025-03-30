@@ -63,7 +63,8 @@ const DataTestimonials = ({ title, isAdmin }) => {
   }, []);
 
   return (
-    <div className="p-5 mt-10 sm:m-2 bg-white">
+    <div className=" relative p-3">
+     
       {/* Header */}
       <section className="text-center max-w-xl mx-auto">
         <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
@@ -75,10 +76,15 @@ const DataTestimonials = ({ title, isAdmin }) => {
 
       {/* Infinite Scroll Section */}
       <div className="relative w-full overflow-hidden">
+  
+      <div
+      className="absolute left-0 top-0 h-full  w-10 sm:w-40 bg-gradient-to-r from-white to-transparent pointer-events-none"
+      style={{ zIndex: 10 }} // Ensure it's on top
+    ></div>
         <motion.div
           className="flex space-x-6 p-4"
           animate={{ x: ["0%", "-100%"] }} // Moves from right to left
-          transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 180, ease: "linear" }}
         >
           {testimonalData.map((item, index) => (
             <div
@@ -108,12 +114,17 @@ const DataTestimonials = ({ title, isAdmin }) => {
               </div>
             </div>
           ))}
-        </motion.div>
+        </motion.div> 
+        <div
+      className="absolute right-0 top-0 h-full w-10 sm:w-40 bg-gradient-to-l from-white to-transparent pointer-events-none"
+      style={{ zIndex: 10 }} // Ensure it's on top
+    ></div>
       </div>
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && ( // Conditionally render the modal
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 p-10 flex justify-center items-center">
+          
           <motion.div
             className="bg-white rounded-md p-6"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -127,10 +138,10 @@ const DataTestimonials = ({ title, isAdmin }) => {
               </div>
               <div>
                 <p className="text-base sm:text-lg font-semibold mb-4">
-                  Delete Service
+                  Delete Testimonial
                 </p>
                 <p className="text-sm text-gray-500 max-w-[30ch] ">
-                  Are you sure you want to delete this Service? This action
+                  Are you sure you want to delete this testimonial? This action
                   cannot be undone.
                 </p>
               </div>
