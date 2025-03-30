@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../assets/AniketLogo.svg";
+import Login from "../assets/loginIMG.svg";
 import Navbar from "../Components/Navbar";
+import { SlInfo } from "react-icons/sl";
+import Footer from "../Components/Footer";
 
 const Admin = () => {
-
   const navigate = useNavigate(); // ✅ React Router navigation
   const [loginData, setLoginData] = useState({
     Email: "",
@@ -53,73 +55,99 @@ const Admin = () => {
 
   return (
     <>
-    <Navbar/>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img alt="Your Company" src={Logo} className="mx-auto h-10 w-auto" />
-          <h2 className="mt-10 text-center text-2xl/9 font-semibold tracking-normal text-gray-900">
-            Sign in to your account
-          </h2>
+      <Navbar />
+<div className="px-5 pb-10">
+      <div className="flex flex-col  sm:flex-row m-auto w-fit border rounded bg-red-50 justify-center mt-10 sm:mt-30 ">
+        <div className=" flex items-center flex-col sm:static">
+          <div className=" md:py-20 px-5 mt-10 flex flex-col items-center justify-center">
+            <div>
+              <img src={Logo} alt="" className="h-18" />
+            </div>
+            <div>
+              <p className="text-gray-600 font-bold text-3xl mt-4 ">
+                Aniket Managave
+              </p>
+            </div>
+            <p className="text-base font-semibold max-w-xs mt-4 text-center text-gray-600 ">
+              Seeking a knowledgeable Mutual Fund Distributor or Financial
+              Advisor?
+            </p>
+          <button onClick={()=>navigate("/#Connect")} className="border border-gray-600 px-3 py-1  mt-5 rounded-full">Connect Us</button>
+
+          </div>
         </div>
+        <div className="p-5 mt-4 sm:mt-0 sm:p-20 border bg-white border-gray-300 rounded-t-3xl   sm:rounded-l-3xl  sm:rounded-tr   ">
+          <div className=" ">
+            {/* <img alt="Your Company" src={Logo}  /> */}
+            <h2 className=" font-bold text-3xl sm:text-5xl leading-tight ">
+              Hey, <br />
+              Welcome Back!
+            </h2>
+            <p className="text-base text-gray-500">
+              We are very happy to see you back!
+            </p>
+          </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={AdminLogin} className="space-y-6">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm/6 font-normal text-gray-900"
-              >
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  value={loginData.Email}
-                  onChange={(e) =>
-                    setLoginData({ ...loginData, Email: e.target.value })
-                  }
-                  autoComplete="email"
-                  className="block w-full rounded-full  bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
+          <div className="mt-4">
+            <form onSubmit={AdminLogin}>
+              <div className="mt-3">
+                <label htmlFor="email" className=" text-base font-semibold ">
+                  Email
+                </label>
+                <div>
+                  <input
+                    id="email"
+                    name="Email"
+                    type="email"
+                    required
+                    value={loginData.Email}
+                    placeholder="commitcommunity@gmail.com"
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, Email: e.target.value })
+                    }
+                    autoComplete="email"
+                    className="border border-gray-200 rounded text-gray-500 bg-gray-50 px-4 py-1 w-full"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm/6 font-normal text-gray-900"
-              >
-                Password
-              </label>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  value={loginData.Password}
-                  onChange={(e) =>
-                    setLoginData({ ...loginData, Password: e.target.value })
-                  }
-                  autoComplete="current-password"
-                  className="block w-full rounded-full  bg-white px-3 py-2 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                />
+              <div className="mt-3">
+                <label htmlFor="password" className=" text-base font-semibold ">
+                  Password
+                </label>
+                <div>
+                  <input
+                    id="password"
+                    name="Password"
+                    type="password"
+                    placeholder="********"
+                    required
+                    value={loginData.Password}
+                    onChange={(e) =>
+                      setLoginData({ ...loginData, Password: e.target.value })
+                    }
+                    autoComplete="current-password"
+                    className="border border-gray-200 rounded bg-gray-50 px-4 py-1 w-full"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center  rounded-full bg-gradient-to-r from-red-500 to-blue-500 px-3 py-2 text-sm/6 font-base text-white shadow-sm hover:from-indigo-500 hover:to-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
-              </button>
-            </div>
-          </form>
+              <div className="mt-4">
+                <label className=" text-gray-500 text-sm mt-4">
+                  {" "}
+                  <input type="checkbox" /> Remember Me as Admin.
+                </label>
+                <button
+                  type="submit"
+                  className="border border-blue-500 bg-blue-500 text-sm sm:text-base font-semibold text-white py-1 w-full rounded"
+                >
+                  Log in
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
       </div>
     </>
   );
