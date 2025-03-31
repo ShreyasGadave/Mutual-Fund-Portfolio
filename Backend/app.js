@@ -14,17 +14,14 @@ const app = express();
 const PORT = process.env.PORT || 3009;
 const MONGO_URI = process.env.MONGODB_URI;
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URI || "*", 
+  credentials: true 
+}));
+
 app.use(express.json());
 
 ConnectDB(MONGO_URI);
-
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*"); // Allow all origins
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   next();
-// });
  
 app.use(LoginRouter)
 
