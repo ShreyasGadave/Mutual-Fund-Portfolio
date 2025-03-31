@@ -14,14 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3009;
 const MONGO_URI = process.env.MONGODB_URI;
 
-app.use(cors({
-  origin: process.env.FRONTEND_URI || "*", 
-  credentials: true 
-}));
-
-// app.use((req,res)=>{
-//   res.send("Hello")
-// })
+app.use(cors())
 
 app.use(express.json());
 
