@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) return <div className="flex justify-center items-center h-screen"><p>Loading...</p></div>;
 
-  if (!user) return <Navigate to="/admin" replace />;
+  if (!user) return <Navigate to="/login" replace />;
 
   return children;
 };

@@ -16,16 +16,18 @@ import Login from "./Pages/Login";
 const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
+  
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user && location.pathname !== "/login") {
+    onAuthStateChanged(auth, (user) => {
+      // Only redirect to login if the user is trying to access a protected route
+      const protectedRoutes = ["/admin/profile", "/admin/about", "/admin/service", "/admin/testimonials"];
+      
+      if (!user && protectedRoutes.includes(window.location.pathname)) {
         navigate("/login");
       }
     });
-
-    return () => unsubscribe(); // Cleanup listener on unmount
-  }, [navigate, location.pathname]);
+  }, [navigate]);
+  
 
   return (
     <div>
