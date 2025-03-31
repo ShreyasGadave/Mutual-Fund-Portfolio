@@ -19,6 +19,10 @@ app.use(cors({
   credentials: true 
 }));
 
+app.use((req,res)=>{
+  res.send("Hello")
+})
+
 app.use(express.json());
 
 ConnectDB(MONGO_URI);
