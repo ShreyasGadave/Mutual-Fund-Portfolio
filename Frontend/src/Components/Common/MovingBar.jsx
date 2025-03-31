@@ -36,7 +36,7 @@ const MovingBar = () => {
     <motion.div
       className="flex gap-6"
       animate={{ x: ["0%", "-100%"] }} // Moves text from right to left
-      transition={{ repeat: Infinity, duration: 50, ease: "linear" }} // Adjust duration for speed
+      transition={{ repeat: Infinity, duration: 80, ease: "linear" }} // Adjust duration for speed
       style={{ display: "flex", width: "max-content" }} // Prevents breaking
     >
       {scrollingText.map((text, index) => (

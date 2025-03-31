@@ -85,8 +85,8 @@ const Footer = () => {
           <div className="font-normal text-base ">
             Contact
             <ul className="mt-3">
-              <li> +91 83790 94949</li>
-              <li>aniketadisha@gmail.com</li>
+              <li className=" no-underline"> +91 83790 94949</li>
+              <li  className=" no-underline">aniketadisha@gmail.com</li>
             </ul>
           </div>
         </div>
