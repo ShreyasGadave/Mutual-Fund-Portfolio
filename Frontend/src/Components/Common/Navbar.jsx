@@ -59,7 +59,7 @@ const Navbar = () => {
   <a href="/#About"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">About</a>
   <a href="/#Service"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">Service</a>
   <a href="/#Contact"  onClick={toggleMenu} className="text-black font-light hover:text-blue-500">Contact</a>
-  <NavLink to='/admin/profile'>
+  <NavLink to='/login'>
   <button
     type="button"  onClick={toggleMenu}
     className="text-black border border-gray-500 px-3 py-1 text-sm font-light transition-transform duration-300 hover:scale-105 rounded-md"
