@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
-import Logo from "../assets/AniketLogo.svg";
+import Logo from "../../assets/AniketLogo.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +30,7 @@ const Navbar = () => {
   <a href="/#About" className="text-black font-light hover:text-blue-500">About</a>
   <a href="/#Service" className="text-black font-light hover:text-blue-500">Service</a>
   <a href="/#Contact" className="text-black font-light hover:text-blue-500">Contact</a>
-  <NavLink to='/admin'>
+  <NavLink to='/login'>
   <button
     type="button"
     className="text-white border border-gray-500 px-3 py-1 text-sm font-light transition-transform duration-300 bg-gray-500 hover:scale-105 rounded-full"

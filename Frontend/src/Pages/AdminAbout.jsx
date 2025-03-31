@@ -1,7 +1,7 @@
 import React from "react";
-import AdminNavbar from "../Components/AdminNavbar";
-import FormAbout from "../Components/Admin/FormAbout";
-import DataAbout from "../Components/Data/DataAbout";
+import AdminNavbar from "../Components/Common/AdminNavbar";
+import FormAbout from "../Components/Admin/AboutForm";
+import DataAbout from "../Components/Data/AboutData";
 
 const AdminAbout = () => {
   return (

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../Components/Common/Navbar";
 import { useParams } from "react-router-dom";
-import Contact from "../Components/Contact";
-import Footer from "../Components/Footer";
+import Contact from "../Components/Common/Contact";
+import Footer from "../Components/Common/Footer";
 
 const Service = () => {
   const { id } = useParams(); // Extract id from URL

@@ -1,7 +1,7 @@
 import React from "react";
-import AdminNavbar from "../Components/AdminNavbar";
-import FormService from "../Components/Admin/FormService";
-import DataService from "../Components/Data/DataService";
+import AdminNavbar from "../Components/Common/AdminNavbar";
+import FormService from "../Components/Admin/ServiceForm";
+import DataService from "../Components/Data/ServiceData";
 
 const AdminServices = () => {
   return (

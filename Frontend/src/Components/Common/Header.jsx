@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../assets/img.png"; // Replace with your actual image path
+import img from "../../assets/img.png";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 

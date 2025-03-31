@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaEdit } from "react-icons/fa";
 import { BsSave2 } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
-import StorageStats from "../DBStorage";
+import StorageStats from "../../Services/DBStorage";
+
 
 const FormProfile = () => {
   const [adminInfo, setFormProfile] = useState({
@@ -25,7 +26,6 @@ const FormProfile = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
         
         if (Array.isArray(data) && data.length > 0) {
           setFormProfile(data[0]);

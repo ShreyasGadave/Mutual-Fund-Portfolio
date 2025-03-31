@@ -1,7 +1,7 @@
 import React from "react";
-import AdminNavbar from "../Components/AdminNavbar";
-import FormTestimonials from "../Components/Admin/FormTestimonials";
-import DataTestimonials from "../Components/Data/DataTestimonials";
+import AdminNavbar from "../Components/Common/AdminNavbar";
+import FormTestimonials from "../Components/Admin/TestimonialsForm";
+import DataTestimonials from "../Components/Data/TestimonialsData";
 
 const AdminTestimonials = () => {
   return (
