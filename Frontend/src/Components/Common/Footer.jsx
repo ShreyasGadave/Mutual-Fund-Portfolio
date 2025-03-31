@@ -86,7 +86,7 @@ const Footer = () => {
             Contact
             <ul className="mt-3">
               <li> +91 83790 94949</li>
-              <li>shreyas@gmail.com</li>
+              <li>aniketadisha@gmail.com</li>
             </ul>
           </div>
         </div>
