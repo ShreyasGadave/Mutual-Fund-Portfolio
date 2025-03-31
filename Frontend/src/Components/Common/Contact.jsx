@@ -13,7 +13,7 @@ const Contact = () => {
   Want to chat? Just shoot me a DM{" "}
   <a
     href={`https://wa.me/7028934703?text=Hello Sir! I came across your website and wanted to connect.?`}
-    className="text-green-500 mx-1 "
+    className="text-green-500 mx-1 underline"
     target="_blank"
     rel="noopener noreferrer"
   >

@@ -84,7 +84,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
         <motion.div
   className="flex space-x-6 p-4"
   animate={{ x: ["0%", "-100%"] }} // Move only half
-  transition={{ repeat: Infinity, duration: 160, ease: "linear" }} // Adjust duration
+  transition={{ repeat: Infinity, duration: 15, ease: "linear" }} // Adjust duration
 >
   {[...testimonalData, ...testimonalData].map((item, index) => (
     <div
