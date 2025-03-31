@@ -5,6 +5,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { FaTwitter } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -47,13 +48,18 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="">
+                  <a href="https://x.com/MangaveAniket?t=HMiyPoZ0NWg-jhIFlIkalA&s=09">
                     <FaTwitter className="size-6" />
                   </a>
                 </li>
                 <li>
-                  <a href="">
-                    <MdEmail className="size-6" />
+                  <a href="aniketadisha@gmail.com">
+                    <MdEmail className="size-6" /> 
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/aniket-mangave-96446a140?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+                    <FaLinkedin className="size-6" /> 
                   </a>
                 </li>
               </ul>
