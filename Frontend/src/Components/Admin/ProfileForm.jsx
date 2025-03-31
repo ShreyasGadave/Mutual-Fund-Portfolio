@@ -48,7 +48,7 @@ const FormProfile = () => {
     e.preventDefault();
     const method = adminId ? "PUT" : "POST";
     const url = adminId
-      ? `${import.meta.env.VITE_BACKEND_URL}/admin//profile/${adminId}`
+      ? `${import.meta.env.VITE_BACKEND_URL}/admin/profile/${adminId}`
       : "${import.meta.env.VITE_BACKEND_URL}/admin/profile";
 
     try {
