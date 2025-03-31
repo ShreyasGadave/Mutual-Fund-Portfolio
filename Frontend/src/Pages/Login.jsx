@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../assets/AniketLogo.svg";
 import Navbar from "../Components/Common/Navbar";
 import { auth, LogIn, SignUp } from "../Services/Firebase";
+import { CgDanger } from "react-icons/cg";
 
 const Login = () => {
 
@@ -108,10 +109,11 @@ const Login = () => {
           <div className="p-5 mt-4 sm:mt-0 sm:p-20 border bg-white border-gray-300 rounded-t-3xl   sm:rounded-l-3xl  sm:rounded-tr   ">
             <div className=" ">
               {/* <img alt="Your Company" src={Logo}  /> */}
-              <h2 className=" font-bold text-3xl sm:text-5xl leading-5">
+              <h2 className=" font-bold text-3xl mt-5 sm:mt-0 sm:text-5xl leading-10">
+                Hey <br/>
                 Welcome Back!
               </h2>
-              <p className="text-base text-gray-500">
+              <p className="text-base mt-1 sm:mt-0 text-gray-500">
                 We are very happy to see you back!
               </p>
             </div>
@@ -140,7 +142,7 @@ const Login = () => {
                   </div>
                 </div> */}
 
-                <div className="mt-3">
+                <div className="mt-5">
                   <label htmlFor="email" className=" text-base font-semibold ">
                     Email
                   </label>
@@ -161,7 +163,7 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="mt-3">
+                <div className="mt-5">
                   <label
                     htmlFor="password"
                     className=" text-base font-semibold "
@@ -185,17 +187,18 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="mt-4">
-                  <label className=" text-gray-500 text-sm mt-4">
-                    <input type="checkbox" /> Remember Me as Login.
+                <div className="mt-5 mb-10">
+                  <label className=" text-gray-500 text-sm mt-4 flex items-center gap-2">
+                    <input type="checkbox" /><p>Remember Me as Login.</p> 
                   </label>
                   <button
                     type="submit"
                     onClick={user_auth}
-                    className="border border-blue-500 bg-blue-500 text-sm sm:text-base font-semibold text-white py-1 w-full rounded"
+                    className="border mt-3 border-blue-500 bg-blue-500 text-sm sm:text-base font-semibold text-white py-1 w-full rounded"
                   >
                     Log in
                   </button>
+                  <p className="text-center text-gray-500 text-sm mt-4 flex justify-center items-center gap-1"> <CgDanger className="h-9"/>Admin Privileges Needed</p>
                 </div>
               </form>
             </div>
