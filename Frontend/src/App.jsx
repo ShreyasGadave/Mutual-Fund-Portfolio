@@ -23,7 +23,7 @@ const App = () => {
       // console.log("User is logged in:", user.email);
       
       if (!user) {
-        navigate("/admin");
+        navigate("/");
       }
     });
   }, [navigate]);
