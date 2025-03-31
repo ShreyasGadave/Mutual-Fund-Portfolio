@@ -5,8 +5,11 @@ import { auth } from "../Services/Firebase";
 const ProtectedRoute = ({ children }) => {
   const [user, loading] = useAuthState(auth);
 
-  if (loading) return <p>Loading...</p>; // Show loading state while checking auth
-  return user ? children : <Navigate to="/admin" replace />;
+  if (loading) return <div className="flex justify-center items-center h-screen"><p>Loading...</p></div>;
+
+  if (!user) return <Navigate to="/admin" replace />;
+
+  return children;
 };
 
 export default ProtectedRoute;

@@ -28,11 +28,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const SignUp = async (Name, Email, Passoword) => {
+const SignUp = async (Name, Email, Password) => {
   try {
-    const res = await createUserWithEmailAndPassword(auth, Email, Passoword);
+    const res = await createUserWithEmailAndPassword(auth, Email, Password);
     const user = res.user;
-    await addDoc(collection(db, "user"), {
+    await addDoc(collection(db, "users"), {
       uid: user.uid,
       Name,
       authProvider: "local",
@@ -44,9 +44,9 @@ const SignUp = async (Name, Email, Passoword) => {
   }
 };
 
-const LogIn = async (Email, Passoword) => {
+const LogIn = async (Email, Password) => {
   try {
-    await signInWithEmailAndPassword(auth, Email, Passoword);
+    await signInWithEmailAndPassword(auth, Email, Password);
   } catch (error) {
     console.log(error);
     toast.error(error.code.split("/")[1].split("-").join(" "));

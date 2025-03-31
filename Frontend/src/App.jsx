@@ -19,8 +19,8 @@ const App = () => {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log(user); 
-      console.log("User is logged in:", user.email);
+      // console.log(user); 
+      // console.log("User is logged in:", user.email);
       
       if (!user) {
         navigate("/admin");
