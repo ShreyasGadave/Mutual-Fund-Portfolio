@@ -64,7 +64,6 @@ const DataTestimonials = ({ title, isAdmin }) => {
 
   return (
     <div className=" relative p-3">
-     
       {/* Header */}
       <section className="text-center max-w-xl mx-auto">
         <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
@@ -76,15 +75,14 @@ const DataTestimonials = ({ title, isAdmin }) => {
 
       {/* Infinite Scroll Section */}
       <div className="relative w-full overflow-hidden">
-  
-      <div
-      className="absolute left-0 top-0 h-full  w-10 sm:w-40 bg-gradient-to-r from-white to-transparent pointer-events-none"
-      style={{ zIndex: 10 }} // Ensure it's on top
-    ></div>
+        <div
+          className="absolute left-0 top-0 h-full  w-10 sm:w-40 bg-gradient-to-r from-white to-transparent pointer-events-none"
+          style={{ zIndex: 10 }} // Ensure it's on top
+        ></div>
         <motion.div
   className="flex space-x-6 p-4"
   animate={{ x: ["0%", "-100%"] }} // Move only half
-  transition={{ repeat: Infinity, duration: 15, ease: "linear" }} // Adjust duration
+  transition={{ repeat: Infinity, duration: 10, ease: "linear" }} // Adjust duration
 >
   {[...testimonalData, ...testimonalData].map((item, index) => (
     <div
@@ -112,15 +110,14 @@ const DataTestimonials = ({ title, isAdmin }) => {
 </motion.div>
 
         <div
-      className="absolute right-0 top-0 h-full w-10 sm:w-40 bg-gradient-to-l from-white to-transparent pointer-events-none"
-      style={{ zIndex: 10 }} // Ensure it's on top
-    ></div>
+          className="absolute right-0 top-0 h-full w-10 sm:w-40 bg-gradient-to-l from-white to-transparent pointer-events-none"
+          style={{ zIndex: 10 }} // Ensure it's on top
+        ></div>
       </div>
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && ( // Conditionally render the modal
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 p-10 flex justify-center items-center">
-          
           <motion.div
             className="bg-white rounded-md p-6"
             initial={{ opacity: 0, scale: 0.8 }}
