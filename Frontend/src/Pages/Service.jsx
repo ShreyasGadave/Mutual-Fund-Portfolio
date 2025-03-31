@@ -53,7 +53,7 @@ const Service = () => {
                 className="w-full rounded-lg bg-gray-200 object-cover"
               />
               <a
-                href={`https://wa.me/7028934703?text=Hello Sir! I'm interested in your ${serviceData.Title} service. Could you please provide more information?`}
+                href={`https://wa.me/8379094949?text=Hello Sir! I'm interested in your ${serviceData.Title} service. Could you please provide more information?`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
