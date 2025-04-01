@@ -5,13 +5,15 @@ import { FaSave } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { TiDelete } from "react-icons/ti";
+import ServiceSkeleton from "../../Skeleton/ServiceSkeleton";
 
 const DataService = ({ title, isAdmin }) => {
   const [serviceData, setServiceData] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [editedText, setEditedText] = useState("");
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for controlling the delete confirmation modal
-  const [itemToDeleteId, setItemToDeleteId] = useState(null); // State to store the ID of the item to delete
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDeleteId, setItemToDeleteId] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const openDeleteModal = (id) => {
     setItemToDeleteId(id);
@@ -44,6 +46,8 @@ const DataService = ({ title, isAdmin }) => {
         setServiceData(Array.isArray(data) ? data : [data]);
       } catch (err) {
         console.error("Error fetching data:", err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -102,6 +106,10 @@ const DataService = ({ title, isAdmin }) => {
 
   const navigate = useNavigate();
 
+  if (loading) return <ServiceSkeleton />;
+  if (serviceData.length === 0)
+    return  <p className="text-center text-gray-500 py-20">No Service Data Found</p>;
+
   return (
     <div id="Service" className="mt-20">
       <div className=" p-3  rounded sm:m-4 ">
@@ -124,19 +132,21 @@ const DataService = ({ title, isAdmin }) => {
                 >
                   <div className="relative flex flex-row  ">
                     <img
-                      onClick={() =>{ navigate(`/service/${item._id}`);  window.scrollTo({ top: 0, behavior: "smooth" })}}
+                      onClick={() => {
+                        navigate(`/service/${item._id}`);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
                       src={item.ImageURL}
                       className="   w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 shadow sm:aspect-2/1 lg:aspect-square"
                     />
-                  <a
-  href={`https://wa.me/918379094949?text=${encodeURIComponent(`Hello Sir! I'm interested in your ${serviceData?.Title || "service"} service. Could you please provide more information?`)}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-base font-medium absolute right-2 bottom-2 border border-blue-800 text-gray-600 bg-blue-200 rounded-full px-3 cursor-pointer shadow hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-200 ease-in-out"
->
-  Book Now
-</a>
-
+                    <a
+                      href={`https://wa.me/918379094949?text=Hello Sir! I'm interested in your ${item.Title } service. Could you please provide more information?`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base font-medium absolute right-2 bottom-2 border border-blue-800 text-gray-600 bg-blue-200 rounded-full px-3 cursor-pointer shadow hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-200 ease-in-out"
+                    >
+                      Book Now
+                    </a>
                   </div>
 
                   <div className="p-2">

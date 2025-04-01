@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import { motion } from "framer-motion";
 import { TiDelete } from "react-icons/ti";
+import ServiceSkeleton from "../../Skeleton/ServiceSkeleton";
 
 const DataTestimonials = ({ title, isAdmin }) => {
   const [testimonalData, setTestimonalData] = useState([]);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for controlling the delete confirmation modal
   const [itemToDeleteId, setItemToDeleteId] = useState(null); // State to store the ID of the item to delete
+ const [loading, setLoading] = useState(true);
 
   const openDeleteModal = (id) => {
     setItemToDeleteId(id);
@@ -56,11 +58,17 @@ const DataTestimonials = ({ title, isAdmin }) => {
         ); // Duplicate for seamless loop
       } catch (err) {
         console.error("Error fetching data:", err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchAdminInfo();
   }, []);
+
+  if (loading) return <ServiceSkeleton />;
+  if (testimonalData.length === 0)
+    return  <p className="text-center text-gray-500 py-20">No Testimonal Data Found</p>;
 
   return (
     <div className=" relative p-3">
@@ -120,6 +128,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 p-10 flex justify-center items-center">
           <motion.div
             className="bg-white rounded-md p-6"
+            style={{ zIndex: 20 }} 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
