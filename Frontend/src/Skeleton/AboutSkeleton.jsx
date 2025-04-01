@@ -11,20 +11,20 @@ const AboutSkeleton = ({ aboutData }) => {
           </p>
         </section>
           <div className="flex flex-row justify-between mt-3">
-            <div className="font-medium bg-slate-300 h-9 animate-pulse rounded-2xl  w-40">
+            <div className="font-medium bg-slate-300 h-6 animate-pulse rounded-lg  w-40">
           
             </div>
           </div>
           <hr className="col-span-3 mt-3 border-gray-300" />
-          <p className="mt-2  bg-slate-300 h-40 animate-pulse rounded-2xl w-full">
+          <p className="mt-2  bg-slate-300 h-40 animate-pulse rounded-lg w-full">
            
           </p>
           <hr className="col-span-3 mt-3 border-gray-300" />
           <ul className="list-disc text-sm ml-5 mt-2">
-                <li className=" bg-slate-300 h-7 animate-pulse rounded-2xl w-20 mt-2"> </li>
-                <li className=" bg-slate-300 h-7 animate-pulse rounded-2xl w-20 mt-2"> </li>
+                <li className=" bg-slate-300 h-7 animate-pulse rounded-lg w-20 mt-2"> </li>
+                <li className=" bg-slate-300 h-7 animate-pulse rounded-lg w-20 mt-2"> </li>
           </ul>
-          <button className=" bg-slate-300 h-7 animate-pulse rounded-2xl w-20 mt-2"> </button>
+          <button className=" bg-slate-300 h-7 animate-pulse rounded-lg w-20 mt-2"> </button>
         </div>
     </div>
   );

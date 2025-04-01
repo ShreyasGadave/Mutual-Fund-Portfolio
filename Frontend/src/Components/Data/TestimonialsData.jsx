@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import { motion } from "framer-motion";
 import { TiDelete } from "react-icons/ti";
-import ServiceSkeleton from "../../Skeleton/ServiceSkeleton";
+import TestimonialsSkeleton from "../../Skeleton/TestimonialsSkeleton";
 
 const DataTestimonials = ({ title, isAdmin }) => {
   const [testimonalData, setTestimonalData] = useState([]);
@@ -66,7 +66,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
     fetchAdminInfo();
   }, []);
 
-  if (loading) return <ServiceSkeleton />;
+  if (loading) return <TestimonialsSkeleton />;
   if (testimonalData.length === 0)
     return  <p className="text-center text-gray-500 py-20">No Testimonal Data Found</p>;
 
