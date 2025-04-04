@@ -37,7 +37,7 @@ const AdminNavbar = () => {
             {link.label}
           </NavLink>
         ))}
-<button className=" text-gray-600 mr-10 border border-gray-500 rounded-full hover:bg-red-300 "     type="button"  onClick={LogOut}> <IoMdLogOut size={30} className="font-normal "/></button>
+<button className=" text-gray-600 mr-40 border border-gray-500 rounded-full hover:bg-red-300 "     type="button"  onClick={LogOut}> <IoMdLogOut size={30} className="font-normal "/></button>
 
       </div>
     </>

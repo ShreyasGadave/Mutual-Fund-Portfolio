@@ -37,43 +37,6 @@ const Login = () => {
       // Do NOT navigate here on error
     }
   };
-  
-  // const LoginLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!loginData.Email || !loginData.Password) {
-  //     alert("Please fill in all fields before submitting.");
-  //     return;
-  //   }
-
-  //   console.log("Before sending:", loginData);
-
-  //   try {
-  //     const response = await fetch(
-  //       `${import.meta.env.VITE_BACKEND_URL}/admin`, // ✅ Corrected endpoint
-  //       {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(loginData),
-  //       }
-  //     );
-
-  //     const data = await response.json();
-  //     console.log("Response from server:", data);
-
-  //     if (response.ok) {
-  //       localStorage.setItem("token", data.token); // ✅ Store JWT token
-  //       resetForm();
-  //       navigate("/admin/profile")
-  //       ; // ✅ Use React Router to navigate
-  //     } else {
-  //       alert(data.message || "Login failed. Please try again.");
-  //     }
-  //   } catch (err) {
-  //     console.error("Error submitting data:", err.message);
-  //     alert("Failed to submit data. Please try again.");
-  //   }
-  // };
 
   const resetForm = () => {
     setLoginData({ Name: "", Email: "", Password: "" });
@@ -194,7 +157,7 @@ const Login = () => {
                   <button
                     type="submit"
                     onClick={user_auth}
-                    className="border mt-3 border-blue-500 bg-blue-500 text-sm sm:text-base font-semibold text-white py-1 w-full rounded"
+                    className="border mt-3 border-blue-500 bg-blue-500 text-base font-semibold text-white py-2 w-full rounded"
                   >
                     Log in
                   </button>
