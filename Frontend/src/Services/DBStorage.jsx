@@ -4,7 +4,7 @@ export default function StorageStats() {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3009/api/storage")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/storage`)
       .then((res) => res.json())
       .then((data) => setStats(data))
       .catch((err) => console.error("Error fetching stats:", err));

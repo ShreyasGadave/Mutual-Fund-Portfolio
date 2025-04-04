@@ -10,10 +10,9 @@ const AdminNavbar = () => {
       <Navbar />
       <div className=" relative">
       <div
-          className=" absolute right-0 top-4 h-10  w-20 sm:w-40 bg-gradient-to-l from-white to-transparent pointer-events-none"
-          style={{ zIndex: 10 }} // Ensure it's on top
-          
-        ></div>
+  className="absolute right-0 top-4 h-10 w-20 sm:w-40 bg-gradient-to-l from-white via-white to-transparent pointer-events-none"
+  style={{ zIndex: 10 }}
+></div>
       </div>
       <div className=" relative m-5 flex flex-row gap-3 md:gap-2 sm:gap-1 overflow-scroll scrollbar-hide">
         {[

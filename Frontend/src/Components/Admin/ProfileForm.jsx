@@ -107,7 +107,7 @@ const FormProfile = () => {
                     })
                   }
                   disabled={!isEditing}
-                  className="w-full p-2 bg-transparent"
+                  className="w-full p-2 bg-transparent text-gray-600"
                 />
               </dd>
             </div>
