@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { TiDelete } from "react-icons/ti";
 import ServiceSkeleton from "../../Skeleton/ServiceSkeleton";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const DataService = ({ title, isAdmin }) => {
   const [serviceData, setServiceData] = useState([]);
@@ -52,6 +54,10 @@ const DataService = ({ title, isAdmin }) => {
     };
 
     fetchAdminInfo();
+  }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 1200 });
   }, []);
 
   // Handle Delete
@@ -108,7 +114,9 @@ const DataService = ({ title, isAdmin }) => {
 
   if (loading) return <ServiceSkeleton />;
   if (serviceData.length === 0)
-    return  <p className="text-center text-gray-500 py-20">No Service Data Found</p>;
+    return (
+      <p className="text-center text-gray-500 py-20">No Service Data Found</p>
+    );
 
   return (
     <div id="Service" className="mt-20">
@@ -128,7 +136,7 @@ const DataService = ({ title, isAdmin }) => {
               {serviceData.map((item) => (
                 <div
                   key={item._id}
-                  className="group border bg-gray-50 relative  rounded-lg"
+                  className="group border bg-gray-50 relative  rounded-lg" data-aos='fade-up'
                 >
                   <div className="relative flex flex-row  ">
                     <img
@@ -140,7 +148,7 @@ const DataService = ({ title, isAdmin }) => {
                       className="   w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 shadow sm:aspect-2/1 lg:aspect-square"
                     />
                     <a
-                      href={`https://wa.me/918379094949?text=Hello Sir! I'm interested in your ${item.Title } service. Could you please provide more information?`}
+                      href={`https://wa.me/918379094949?text=Hello Sir! I'm interested in your ${item.Title} service. Could you please provide more information?`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-base font-medium absolute right-2 bottom-2 border border-blue-800 text-gray-600 bg-blue-200 rounded-full px-3 cursor-pointer shadow hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-200 ease-in-out"
