@@ -8,13 +8,8 @@ const AdminNavbar = () => {
   return (
     <>
       <Navbar />
-      <div className=" relative">
-      <div
-  className="absolute right-0 top-4 h-10 w-20 sm:w-40 bg-gradient-to-l from-white via-white to-transparent pointer-events-none"
-  style={{ zIndex: 10 }}
-></div>
-      </div>
-      <div className=" relative m-5 flex flex-row gap-3 md:gap-2 sm:gap-1 overflow-scroll scrollbar-hide">
+  
+      <div className=" m-5 relative mt-5 flex flex-row gap-3 md:gap-2 sm:gap-1 overflow-scroll scrollbar-hide">
         {[
           { path: "/", label: "Home" },
           { path: "/admin/profile", label: "Profile" },
@@ -37,7 +32,7 @@ const AdminNavbar = () => {
             {link.label}
           </NavLink>
         ))}
-<button className=" text-gray-600 mr-40 border border-gray-500 rounded-full hover:bg-red-300 "     type="button"  onClick={LogOut}> <IoMdLogOut size={30} className="font-normal "/></button>
+<button className=" text-gray-600 r-40 border border-gray-500 rounded-full hover:bg-red-300 "     type="button"  onClick={LogOut}> <IoMdLogOut size={30} className="font-normal "/></button>
 
       </div>
     </>
