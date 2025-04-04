@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
 import Logo from "../../assets/AniketLogo.svg";
+import { LogOut } from "../../Services/Firebase";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };;
+  
 
   return (
     <div id="Home">
