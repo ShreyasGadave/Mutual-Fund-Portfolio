@@ -82,7 +82,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
       </section>
 
       {/* Infinite Scroll Section */}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full flex  overflow-hidden">
         <div
           className="absolute left-0 top-0 h-full  w-10 sm:w-40 bg-gradient-to-r from-white to-transparent pointer-events-none"
           style={{ zIndex: 10 }} // Ensure it's on top
@@ -90,7 +90,36 @@ const DataTestimonials = ({ title, isAdmin }) => {
         <motion.div
   className="flex space-x-6 p-4"
   animate={{ x: ["0%", "-100%"] }} // Move only half
-  transition={{ repeat: Infinity, duration: 10, ease: "linear" }} // Adjust duration
+  transition={{ repeat: Infinity, duration: 20, ease: "linear" }} // Adjust duration
+>
+  {[...testimonalData, ...testimonalData].map((item, index) => (
+    <div
+      key={index}
+      className="p-3 mt-6 rounded-2xl border shadow-lg text-black min-w-[300px] sm:w-[80%] md:min-w-[350px] md:max-w-sm"
+    >
+      <p className="mt-3 text-black text-sm">{item.Description}</p>
+      <hr className="mt-4 border-gray-400" />
+      <div className="mt-4 flex justify-between items-center">
+        <span className="block text-base font-medium text-gray-900">
+          {item.Name}
+        </span>
+        {isAdmin && (
+          <button
+            type="button"
+            onClick={() => openDeleteModal(item._id)}
+            className="text-red-500 border border-red-500 px-2 py-1 rounded-md text-sm font-semibold transition-transform duration-300 hover:scale-105 flex items-center"
+          >
+            <MdCancel className="size-5" />
+          </button>
+        )}
+      </div>
+    </div>
+  ))}
+</motion.div>
+<motion.div
+  className="flex space-x-6 p-4"
+  animate={{ x: ["0%", "-100%"] }} // Move only half
+  transition={{ repeat: Infinity, duration: 20, ease: "linear" }} // Adjust duration
 >
   {[...testimonalData, ...testimonalData].map((item, index) => (
     <div
