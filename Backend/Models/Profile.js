@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const AdminSchema = new mongoose.Schema({
+  ImageURL: { type: String, required: true },
   Name: { type: String, required: true },
   Email: { type: String, required: true, unique: true }, // Ensure email is unique
   Phone: { type: String, required: true },
