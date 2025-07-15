@@ -75,10 +75,7 @@ const DataAbout = ({ title, isAdmin, limit }) => {
         <section className="text-center max-w-xl mx-auto">
           <h2 className="text-3xl font-bold cursor-pointer">{title}</h2>
           <p className="text-gray-500 mt-2 text-sm cursor-pointer">
-            To help you make informed decisions for a secure and prosperous
-            future, we offer expert financial guidance, investment solutions,
-            and mutual fund distribution services, carefully tailored to your
-            needs.
+           We provide expert financial guidance, investment solutions, and mutual fund services tailored to help you build a secure and successful future.
           </p>
         </section>
         {aboutData.map((item) => (
@@ -99,11 +96,12 @@ const DataAbout = ({ title, isAdmin, limit }) => {
               )}
             </div>
             <hr className="col-span-3 mt-3 border-gray-300" />
-            <p className="mt-2  block text-sm sm:text-lg font-normal text-gray-900">
+            <p className="mt-2  block text-base sm:text-lg font-normal text-gray-900">
               {item.Description}
+              
             </p>
             <hr className="col-span-3 mt-3 border-gray-300" />
-            <ul className="list-disc text-sm ml-5 mt-2">
+            <ul className="list-disc text-base ml-5 mt-2">
               {item.List.map((listItem, index) => (
                 <li key={index} className="text-base sm:text-lg">
                   {listItem}

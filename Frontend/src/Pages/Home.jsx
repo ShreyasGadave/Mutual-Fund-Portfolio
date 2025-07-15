@@ -16,7 +16,7 @@ const Home = () => {
       <DataAbout title="About Me" limit={1} isAdmin={false} />
       <MovingBar/>
       <DataService title="Our Services" isAdmin={false} />
-      <DataTestimonials title="Testimonials" isAdmin={false}  > rffwefefsjs</DataTestimonials>
+      <DataTestimonials title="Testimonials" isAdmin={false}  > </DataTestimonials>
       <Contact />
       <Footer />
      </div>

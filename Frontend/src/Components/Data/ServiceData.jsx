@@ -145,7 +145,7 @@ const DataService = ({ title, isAdmin }) => {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                       src={item.ImageURL}
-                      className="   w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 max-sm:h-80 shadow sm:aspect-2/1 lg:aspect-square"
+                      className="   w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75  shadow "
                     />
                     <a
                       href={`https://wa.me/918379094949?text=Hello Sir! I'm interested in your ${item.Title} service. Could you please provide more information?`}

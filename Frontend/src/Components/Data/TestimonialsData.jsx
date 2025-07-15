@@ -97,7 +97,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
       key={index}
       className="p-3 mt-6 rounded-2xl border shadow-lg text-black min-w-[300px] sm:w-[80%] md:min-w-[350px] md:max-w-sm"
     >
-      <p className="mt-3 text-black text-sm">{item.Description}</p>
+      <p className="mt-3 text-black text-base">{item.Description}</p>
       <hr className="mt-4 border-gray-400" />
       <div className="mt-4 flex justify-between items-center">
         <span className="block text-base font-medium text-gray-900">
@@ -126,7 +126,7 @@ const DataTestimonials = ({ title, isAdmin }) => {
       key={index}
       className="p-3 mt-6 rounded-2xl border shadow-lg text-black min-w-[300px] sm:w-[80%] md:min-w-[350px] md:max-w-sm"
     >
-      <p className="mt-3 text-black text-sm">{item.Description}</p>
+      <p className="mt-3 text-black text-base">{item.Description} </p>
       <hr className="mt-4 border-gray-400" />
       <div className="mt-4 flex justify-between items-center">
         <span className="block text-base font-medium text-gray-900">
