@@ -56,9 +56,9 @@ const FormService = () => {
     formData.append("List", JSON.stringify(adminInfo.List));
   
     // Debugging: Log the formData content
-    console.log("FormData before sending:");
+    // console.log("FormData before sending:");
     for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
+      // console.log(`${key}:`, value);
     }
   
     try {

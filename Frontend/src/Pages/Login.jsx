@@ -26,7 +26,7 @@ const Login = () => {
     }
 
     try {
-      console.log("Before login:", { Email, Password });
+      // console.log("Before login:", { Email, Password });
 
       await LogIn(Email, Password);
       resetForm();
@@ -82,7 +82,7 @@ const Login = () => {
             </div>
 
             <div className="mt-4">
-              {/*  onSubmit={LoginLogin}> */}
+              {/*  onSubmit={LoginLogin} */}
               <form>
                 {/* <div className="mt-3">
                   <label htmlFor="name" className=" text-base font-semibold ">
